@@ -124,7 +124,7 @@
                         </div>
                         <div class="bbs-col-s n-bar">{{ $lecture->getPercent($sac_info->sid, $lecture->sid) }}%</div>
                         <div class="bbs-col-s n-bar">
-                            @if($sac_info->edu->isEduOpen())
+                            @if($sac_info->edu->isEduOpen() || isDev())
                                 @if(($sac_info->pay_method ?? '') == 'F' || ($sac_info->pay_status ?? '') == 'C')
                                     <a href="{{ route('education.play',['ssid'=>request()->ssid, 'lsid'=>$lecture->sid,'type'=>$lecture->type]) }}" class="btn btn-small btn-view">{{ ($lecture->lec_view()->complete_status ?? '') == 'Y' ? '다시보기' : '강의보기' }}</a>
                                 @endif
