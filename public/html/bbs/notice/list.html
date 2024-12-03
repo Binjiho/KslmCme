@@ -1,0 +1,200 @@
+<?php
+$main = "sub";
+include $_SERVER['DOCUMENT_ROOT'].'/include/header.inc';
+?>
+
+<section id="container">
+    <article class="sub-visual">
+        <div class="sub-visual-con inner-layer">
+            <h2 class="sub-visual-tit">지원센터</h2>
+            <p>
+                지원센터를 확인하실 수 있습니다.
+            </p>
+            <div class="breadcrumb">
+                <a href="/" class="btn btn-home"><span class="hide">HOME</span></a>
+                <ul>
+                    <li>지원센터</li>
+                    <li>공지사항</li>
+                </ul>
+            </div>
+        </div>
+    </article>
+    <article class="sub-contents">
+        <div class="sub-conbox inner-layer">
+
+            <!-- s:board -->
+            <link href="./assets/css/board.css" rel="stylesheet">
+
+            <div class="sch-wrap type3 skin1">
+                <form action="" method="">
+                    <feildset>
+                        <legend class="hide">검색</legend>
+                        <div class="form-group">
+                            <select name="" id="" class="form-item sch-cate">
+                                <option value="">제목+내용</option>
+                                <option value="">작성자</option>
+                            </select>
+                            <input type="text" name="" id="" class="form-item sch-key" placeholder="검색어를 입력하세요.">
+                            <button type="submit" class="btn btn-sch"><span class="hide">검색</span></button>
+                        </div>
+                    </feildset>
+                </form>
+            </div>
+            
+            <div id="board" class="board-wrap">
+                <ul class="board-list">
+                    <!-- 공지 -->
+                    <li class="active">                        
+                        <div class="list-con">
+                            <div class="bbs-tit">
+                                <a href="./view.html" class="ellipsis2">
+                                    공지사항 입니다.                  
+                                </a>       
+                                <span class="ic-new">N</span>
+                            </div>
+                            <span class="bbs-name">작성자</span>
+                            <span class="bbs-date">YYYY-MM-DD</span>
+                            <span class="bbs-hit">100</span>
+                        </div>
+                        <div>
+                            <div class="bbs-admin">
+                                <select name="" id="" class="form-item">
+                                    <option value="">공개</option>
+                                    <option value="">비공개</option>
+                                </select>
+                                <a href="#n" class="btn btn-modify"><span class="hide">수정</span></a>
+                                <a href="#n" class="btn btn-delete"><span class="hide">삭제</span></a>
+                            </div>
+                        </div>
+                    </li>                    
+
+                    <!-- 카테고리 -->
+                    <li class="ef01">
+                        <div class="list-con">                
+                            <div class="bbs-tit">
+                                <a href="./view.html" class="ellipsis2">                 
+                                    카테고리가 표시되는 게시글 입니다. 카테고리가 표시되는 게시글 입니다. 카테고리가 표시되는 게시글 입니다.
+                                </a>
+                                <span class="ic-new">N</span>
+                            </div>
+                            <span class="bbs-name">작성자</span>
+                            <span class="bbs-date">YYYY-MM-DD</span>
+                            <span class="bbs-hit">100</span>
+                        </div>
+                        <div>
+                            <div class="bbs-admin">
+                                <select name="" id="" class="form-item">
+                                    <option value="">공개</option>
+                                    <option value="">비공개</option>
+                                </select>
+                                <a href="#n" class="btn btn-modify"><span class="hide">수정</span></a>
+                                <a href="#n" class="btn btn-delete"><span class="hide">삭제</span></a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="ef01">                        
+                        <div class="list-con">
+                            <div class="bbs-tit">
+                                <a href="./view.html" class="ellipsis2">
+                                    게시글 제목은 2줄까지 표시됩니다. 게시글 제목은 2줄까지 표시됩니다. 게시글 제목은 2줄까지 표시됩니다. 게시글 제목은 2줄까지 표시됩니다. 게시글 제목은 2줄까지 표시됩니다.
+                                </a>               
+                                <span class="ic-new">N</span>
+                            </div>
+                            <span class="bbs-name">작성자</span>
+                            <span class="bbs-date">YYYY-MM-DD</span>
+                            <span class="bbs-hit">100</span>
+                        </div>
+                        <div>
+                            <div class="bbs-admin">
+                                <select name="" id="" class="form-item">
+                                    <option value="">공개</option>
+                                    <option value="">비공개</option>
+                                </select>
+                                <a href="#n" class="btn btn-modify"><span class="hide">수정</span></a>
+                                <a href="#n" class="btn btn-delete"><span class="hide">삭제</span></a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="ef01">                        
+                        <div class="list-con">
+                            <div class="bbs-tit">
+                                <a href="./view.html" class="ellipsis2">
+                                    게시글 제목은 2줄까지 표시됩니다. 게시글 제목은 2줄까지 표시됩니다. 게시글 제목은 2줄까지 표시됩니다. 게시글 제목은 2줄까지 표시됩니다. 게시글 제목은 2줄까지 표시됩니다.            
+                                </a>               
+                                <span class="ic-new">N</span>
+                            </div>
+                            <span class="bbs-name">작성자</span>
+                            <span class="bbs-date">YYYY-MM-DD</span>
+                            <span class="bbs-hit">100</span>
+                        </div>
+                        <div>
+                            <div class="bbs-admin">
+                                <select name="" id="" class="form-item">
+                                    <option value="">공개</option>
+                                    <option value="">비공개</option>
+                                </select>
+                                <a href="#n" class="btn btn-modify"><span class="hide">수정</span></a>
+                                <a href="#n" class="btn btn-delete"><span class="hide">삭제</span></a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="ef01">                        
+                        <div class="list-con">
+                            <div class="bbs-tit">
+                                <a href="./view.html" class="ellipsis2">
+                                    게시글 제목은 2줄까지 표시됩니다. 게시글 제목은 2줄까지 표시됩니다. 게시글 제목은 2줄까지 표시됩니다. 게시글 제목은 2줄까지 표시됩니다. 게시글 제목은 2줄까지 표시됩니다.
+                                </a>               
+                                <span class="ic-new">N</span>
+                            </div>
+                            <span class="bbs-name">작성자</span>
+                            <span class="bbs-date">YYYY-MM-DD</span>
+                            <span class="bbs-hit">100</span>
+                        </div>
+                        <div>
+                            <div class="bbs-admin">
+                                <select name="" id="" class="form-item">
+                                    <option value="">공개</option>
+                                    <option value="">비공개</option>
+                                </select>
+                                <a href="#n" class="btn btn-modify"><span class="hide">수정</span></a>
+                                <a href="#n" class="btn btn-delete"><span class="hide">삭제</span></a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- no data -->
+                    <li class="no-data text-center">
+                        <img src="./assets/image/board/ic_nodata.png" alt=""> <br>
+                        등록된 게시글이 없습니다.
+                    </li>
+                </ul>
+                <div class="btn-wrap text-right">
+                    <a href="./write.html" class="btn btn-board btn-write">등록</a>
+                </div>
+
+                <div class="paging-wrap">
+                    <ul class="paging">
+                        <li class="first"><a href="#n"><span class="hide">처음</span></a></li>
+                        <li class="prev"><a href="#n"><span class="hide">이전</span></a></li>
+                        <li class="num on"><a href="#n">1</a></li>
+                        <li class="num"><a href="#n">2</a></li>
+                        <li class="num"><a href="#n">3</a></li>
+                        <li class="num"><a href="#n">4</a></li>
+                        <li class="num"><a href="#n">5</a></li>
+                        <li class="next"><a href="#n"><span class="hide">다음</span></a></li>
+                        <li class="last"><a href="#n"><span class="hide">마지막</span></a></li>
+                    </ul>
+                </div>
+            </div>        
+            <!-- //e:board -->
+            
+        </div>
+    </article>
+</section>
+
+<?php
+include $_SERVER['DOCUMENT_ROOT'].'/include/footer.inc';
+?>

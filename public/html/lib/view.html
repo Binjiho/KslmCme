@@ -1,0 +1,149 @@
+<?php
+$main = "sub";
+include $_SERVER['DOCUMENT_ROOT'].'/include/header.inc';
+?>
+
+<section id="container">
+    <article class="sub-visual">
+        <div class="sub-visual-con inner-layer">
+            <h2 class="sub-visual-tit">학술자료실</h2>
+            <p>
+                학술자료실을 확인하실 수 있습니다.
+            </p>
+            <div class="breadcrumb">
+                <a href="/" class="btn btn-home"><span class="hide">HOME</span></a>
+                <ul>
+                    <li>학술자료실</li>
+                </ul>
+            </div>
+        </div>
+    </article>
+    <article class="sub-contents">
+        <div class="sub-conbox inner-layer">
+            <div class="ev-view-con">
+                <div class="img-wrap">
+                    <img src="/assets/image/sub/img_ev01.png" alt="제62회 대한소화기내시경학회 세미나">
+                </div>
+                <div class="text-wrap">
+                    <span class="cate">월례집담회</span>
+                    <p class="tit">제62회 대한소화기내시경학회 세미나</p>
+                    <p class="date">
+                        2020-08-16 <br>
+                        일산킨텍스 제2전시장 및 온라인
+                    </p>
+					<div class="btn-wrap">
+							<a href="" class="btn btn-small2 color-type3">초록집</a>
+							<a href="" class="btn btn-small2 color-type1">프로그램북</a>
+						</div>
+                    <!-- 관심자료 선택 시 class="on" 추가 -->
+                    <a href="#n" class="btn btn-small btn-line color-type2 btn-like on">관심자료</a>
+                </div>
+            </div>
+
+            <div class="sch-form-wrap">
+                <form action="" method="">
+                    <fieldset>
+                        <legend class="hide">통합검색</legend>
+                        <div class="sch-wrap">
+                            <div class="form-group">
+                                <input type="text" name="" id="" class="form-item sch-key" placeholder="검색하실 내용을 입력하세요.">
+                                <button type="submit" class="btn btn-sch"><span class="hide">검색</span></button>
+                                <button type="reset" class="btn btn-reset">검색 초기화</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+
+            <div class="sub-tab-wrap type1">
+                <ul class="sub-tab-menu">
+                    <li class="on"><a href="#n">2020-08-16</a></li>
+                    <li><a href="#n">2020-08-17</a></li>
+                    <li><a href="#n">2020-08-18</a></li>
+                </ul>
+            </div>
+            <div class="sub-tab-wrap type2">
+                <ul class="sub-tab-menu">
+                    <li class="on"><a href="#n">ROOM1</a></li>
+                    <li><a href="#n">ROOM2</a></li>
+                    <li><a href="#n">ROOM2</a></li>
+                    <li><a href="#n">ROOM3</a></li>
+                    <li><a href="#n">ROOM4</a></li>
+                    <li><a href="#n">ROOM5</a></li>
+                    <li><a href="#n">ROOM6</a></li>
+                    <li><a href="#n">ROOM7</a></li>
+                </ul>
+            </div>
+
+            <div class="session-con">
+                <p class="tit">ROOM 1</p>
+
+                <div class="session-tit">
+                    <strong>세션명</strong>
+                    <p class="full-right">좌장: 이름, 이름</p>
+                </div>
+                <div class="table-wrap">
+                    <table class="cst-table">
+                        <caption class="hide">세션</caption>
+                        <colgroup>
+                            <col>
+                            <col style="width: 10%;">
+                            <col style="width: 10%;">
+							<col style="width: 10%;">
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th scope="col">
+                                    제목 <br>발표자
+                                </th>
+                                <th scope="col">동영상</th>
+                                <th scope="col">발표자료</th>
+								<th scope="col">초록</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-left">
+                                    <strong class="tit"><span class="text-pink2">[자료분야]</span> 제목</strong>
+                                    <p>
+                                        이름(소속)
+                                    </p>
+                                </td>
+                                <td>
+                                    <a href="#n" target="_blank" title="동영상 보기"><img src="/assets/image/sub/ic_video.png" alt=""></a>
+                                </td>
+                                <td>
+                                    <a href="#n" download title="파일 다운로드"><img src="/assets/image/sub/ic_pdf.png" alt=""></a>
+                                </td>
+								<td>
+                                    
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">
+                                    <strong class="tit"><span class="text-pink2">[자료분야]</span> 자료 제목 자료 제목자료 제목자료 제목자료 제목자료 제목자료 제목자료 제목자료 제목자료 제목자료 제목자료 제목자료 제목자료 제목자료 제목</strong>
+                                    <p>
+                                        이름(소속)
+                                    </p>
+                                </td>
+                                <td>
+                                    <a href="#n" target="_blank" title="동영상 보기"><img src="/assets/image/sub/ic_video.png" alt=""></a>
+                                </td>
+                                <td>
+                                    <a href="#n" download title="파일 다운로드"><img src="/assets/image/sub/ic_pdf.png" alt=""></a>
+                                </td>
+								<td>
+                                    <a href="#n" download title="파일 다운로드"><img src="/assets/image/sub/ic_pdf.png" alt=""></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </article>
+</section> 
+
+<?php
+include $_SERVER['DOCUMENT_ROOT'].'/include/footer.inc';
+?>

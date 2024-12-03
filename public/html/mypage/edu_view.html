@@ -1,0 +1,138 @@
+<?php
+$main = "sub";
+include $_SERVER['DOCUMENT_ROOT'].'/include/header.inc';
+?>
+
+<section id="container">
+    <article class="sub-visual">
+        <div class="sub-visual-con inner-layer">
+            <h2 class="sub-visual-tit">마이페이지</h2>
+            <p>
+                마이페이지를 확인하실 수 있습니다.
+            </p>
+            <div class="breadcrumb">
+                <a href="/" class="btn btn-home"><span class="hide">HOME</span></a>
+                <ul>
+                    <li>마이페이지</li>
+                    <li>온라인 강의실</li>
+                </ul>
+            </div>
+        </div>
+    </article>
+    <article class="sub-contents">
+        <div class="sub-conbox inner-layer">
+            <div class="sub-tab-wrap type3">
+                <ul class="sub-tab-menu">
+                    <li class="on"><a href="http://kslm.m2comm.co.kr/html/mypage/edu_list.html"><span>온라인 강의실</span></a></li>
+                    <li><a href="http://kslm.m2comm.co.kr/html/mypage/lib_list.html"><span>나의 자료실</span></a></li>
+                    <li><a href="http://kslm.m2comm.co.kr/html/mypage/info.html"><span>개인정보</span></a></li>
+                </ul>
+            </div>
+            <div class="sub-tab-wrap type1">
+                <ul class="sub-tab-menu">
+                    <li class="on"><a href="http://kslm.m2comm.co.kr/html/mypage/edu_list.html">교육 수강</a></li>
+                    <li><a href="http://kslm.m2comm.co.kr/html/mypage/cancel_list.html">교육신청/취소</a></li>
+                    <li><a href="http://kslm.m2comm.co.kr/html/mypage/print_list.html">이수증 출력</a></li>
+                </ul>
+            </div>
+            <div class="lecture-view-con">
+                <div class="lecture-view-contop">
+                    <div class="lecture-tit">
+                        <p class="tit">교육명이 노출됩니다.</p>
+                        <p class="date"><strong>수강기간 : </strong>YYYY.MM.DD ~ YYYY.MM.DD</p>
+                    </div>
+                    <div class="file">
+                        교육자료 <a href="#n" class="btn btn-file" download><img src="/assets/image/sub/ic_file.png" alt="">파일명.pdf</a>
+                    </div>
+                </div>
+                <div class="edu-view-wrap">
+                    <div class="edu-view-conbox">
+                       <div class="edu-info">
+                            <h4 class="edu-tit type1">교육 소개</h4>
+                            <div class="editors-contents">
+                                사용자가 입력한 교육에 대한 소개글 노출 사용자가 입력한 교육에 대한 소개글 노출 사용자가 입력한 교육에 대한 소개글 노출 사용자가 입력한 교육에 대한 소개글 노출 사용자가 입력한 교육에 대한 소개글 노출 사용자가 입력한 교육에 대한 소개글 노출 사용자가 입력한 교육에 대한 소개글 노출 사용자가 입력한 교육에 대한 소개글 노출
+                            </div>
+                       </div>
+                    </div>
+                    <div class="edu-view-conbox">
+                        <h4 class="edu-tit type2">교육 이수 조건</h4>
+                        <ul class="edu-info-list">
+                            <li>강의 영상 <br>100% 시청</li>
+                            <li>퀴즈 풀이 합격 조건 <br><strong class="text-red">7/10</strong></li>
+                            <li>설문 참여</li>
+                            <li>이수완료</li>
+                        </ul>
+                        <div class="help-text text-right mt-10">
+                            퀴즈는 합격 하실 때까지 재시험 가능합니다.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="btn-wrap text-right">
+                    <!-- 완료시 class="on" -->
+                    <a href="http://kslm.m2comm.co.kr/html/mypage/quiz.html" class="btn btn-lecture btn-quiz on">퀴즈</a>
+                    <a href="http://kslm.m2comm.co.kr/html/mypage/popup_survey.html" class="btn btn-lecture btn-survey on">설문</a>
+
+                    <a href="http://kslm.m2comm.co.kr/html/mypage/quiz.html" class="btn btn-lecture btn-quiz">퀴즈</a>
+                    <a href="http://kslm.m2comm.co.kr/html/mypage/popup_survey.html" class="btn btn-lecture btn-survey">설문</a>
+                </div>
+                <p class="table-contop text-right">
+                    수강 기간이 종료된 경우, 강의 수강이 불가능합니다. <br class="m-br">(강의 리스트 확인만 가능)
+                </p>
+                
+                <ul class="board-list lecture">
+                    <li class="list-head">
+                        <div class="bbs-col-xs">강의</div>
+                        <div class="bbs-tit">강의명</div>
+                        <div class="bbs-col-s">강의 영상 진행률</div>
+                        <div class="bbs-col-s">강의 수강</div>
+                    </li>
+
+                    <li>
+                        <div class="bbs-col-xs n-bar">1강</div>
+                        <div class="bbs-tit text-left n-bar">
+                            <strong>Blepharoplasty</strong>
+                            <p>
+                                김이름 (서울의대)
+                            </p>
+                        </div>
+                        <div class="bbs-col-s n-bar">100%</div>
+                        <div class="bbs-col-s n-bar">
+                            <a href="http://kslm.m2comm.co.kr/html/mypage/view_video.html" class="btn btn-small btn-re">다시보기</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bbs-col-xs n-bar">2강</div>
+                        <div class="bbs-tit text-left n-bar">
+                            <strong>Face and Neck Lift</strong>
+                            <p>
+                                김이름 (서울의대)
+                            </p>
+                        </div>
+                        <div class="bbs-col-s n-bar">70%</div>
+                        <div class="bbs-col-s n-bar">
+                            <a href="http://kslm.m2comm.co.kr/html/mypage/view_video.html" class="btn btn-small btn-re">다시보기</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bbs-col-xs n-bar">3강</div>
+                        <div class="bbs-tit text-left n-bar">
+                            <strong>Non-Surgical Rejuvenation</strong>
+                            <p>
+                                김이름 (서울의대)
+                            </p>
+                        </div>
+                        <div class="bbs-col-s n-bar">30%</div>
+                        <div class="bbs-col-s n-bar">
+                            <a href="http://kslm.m2comm.co.kr/html/mypage/view_pdf.html" class="btn btn-small btn-view">강의보기</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </article>
+</section> 
+
+<?php
+include $_SERVER['DOCUMENT_ROOT'].'/include/footer.inc';
+?>

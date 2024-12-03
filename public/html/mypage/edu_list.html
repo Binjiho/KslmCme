@@ -1,0 +1,253 @@
+<?php
+$main = "sub";
+include $_SERVER['DOCUMENT_ROOT'].'/include/header.inc';
+?>
+
+<section id="container">
+    <article class="sub-visual">
+        <div class="sub-visual-con inner-layer">
+            <h2 class="sub-visual-tit">마이페이지</h2>
+            <p>
+                마이페이지를 확인하실 수 있습니다.
+            </p>
+            <div class="breadcrumb">
+                <a href="/" class="btn btn-home"><span class="hide">HOME</span></a>
+                <ul>
+                    <li>마이페이지</li>
+                    <li>온라인 강의실</li>
+                </ul>
+            </div>
+        </div>
+    </article>
+    <article class="sub-contents">
+        <div class="sub-conbox inner-layer">
+            <div class="sub-tab-wrap type3">
+                <ul class="sub-tab-menu">
+                    <li class="on"><a href="http://kslm.m2comm.co.kr/html/mypage/edu_list.html"><span>온라인 강의실</span></a></li>
+                    <li><a href="http://kslm.m2comm.co.kr/html/mypage/lib_list.html"><span>나의 자료실</span></a></li>
+                    <li><a href="http://kslm.m2comm.co.kr/html/mypage/info.html"><span>개인정보</span></a></li>
+                </ul>
+            </div>
+            <div class="sub-tab-wrap type1">
+                <ul class="sub-tab-menu">
+                    <li class="on"><a href="http://kslm.m2comm.co.kr/html/mypage/edu_list.html">교육 수강</a></li>
+                    <li><a href="http://kslm.m2comm.co.kr/html/mypage/cancel_list.html">교육신청/취소</a></li>
+                    <li><a href="http://kslm.m2comm.co.kr/html/mypage/print_list.html">이수증 출력</a></li>
+                </ul>
+            </div>
+            <form action="" method="">
+                <fieldset>
+                    <legend class="hide">검색</legend>
+                    <ul class="write-wrap">
+                        <li>
+                            <div class="form-tit">유형</div>
+                            <div class="form-con">
+                                <div class="checkbox-wrap type2">
+                                    <label for="chk1_1" class="checkbox-group"><input type="checkbox" name="" id="chk1_1" checked>학술대회</label>
+                                    <label for="chk1_2" class="checkbox-group"><input type="checkbox" name="" id="chk1_2">월례집담회</label>
+                                    <label for="chk1_3" class="checkbox-group"><input type="checkbox" name="" id="chk1_3">기타</label>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-tit">학술대회 구분</div>
+                            <div class="form-con">
+                                <div class="checkbox-wrap type2">
+                                    <label for="chk2_1" class="checkbox-group"><input type="checkbox" name="" id="chk2_1">춘계</label>
+                                    <label for="chk2_2" class="checkbox-group"><input type="checkbox" name="" id="chk2_2" checked>LMCE</label>
+                                    <label for="chk2_3" class="checkbox-group"><input type="checkbox" name="" id="chk2_3">초록</label>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-tit">교육분야</div>
+                            <div class="form-con">
+                                <div class="checkbox-wrap type2">
+                                    <label for="chk3_1" class="checkbox-group"><input type="checkbox" name="" id="chk3_1" checked>임상화학</label>
+                                    <label for="chk3_2" class="checkbox-group"><input type="checkbox" name="" id="chk3_2" checked>진단혈액</label>
+                                    <label for="chk3_3" class="checkbox-group"><input type="checkbox" name="" id="chk3_3">임상미생물</label>
+                                    <label for="chk3_4" class="checkbox-group"><input type="checkbox" name="" id="chk3_4">진단면역</label>
+                                    <label for="chk3_5" class="checkbox-group"><input type="checkbox" name="" id="chk3_5">진단유전</label>
+                                    <label for="chk3_6" class="checkbox-group"><input type="checkbox" name="" id="chk3_6">수혈의학</label>
+                                    <label for="chk3_7" class="checkbox-group"><input type="checkbox" name="" id="chk3_7">검사실운영</label>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-tit">상세검색</div>
+                            <div class="form-con">
+                                <div class="sch-wrap">
+                                    <div class="form-group">
+                                        <input type="text" name="" id="" class="form-item sch-key" placeholder="원하시는 자료를 찾아보세요.">
+                                        <button type="submit" class="btn btn-sch"><span class="hide">검색</span></button>
+                                        <button type="reset" class="btn btn-reset"><img src="/assets/image/icon/ic_reset.png" alt="">필터초기화</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </fieldset>
+            </form>
+            <div class="sch-result-list">
+                <ul class="lecture-list">
+                    <li>
+                        <div class="lecture-info">
+                            <p class="tit">교육명이 보여지는 영역입니다. 교육명이 보여지는 영역입니다. 교육명이 보여지는 영역입니다. 교육명이 보여지는 영역입니다.교육명이 보여지는 영역입니다.</p>
+                            <p class="date">
+                                <strong>수강기간 : </strong> YYYY.MM.DD ~ YYYY.MM.DD
+                            </p>
+                        </div>
+                        <ul class="write-wrap">
+                            <li>
+                                <div class="form-tit">수강 상태</div>
+                                <div class="form-con">
+                                    수강 중
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-tit">이수 강의</div>
+                                <div class="form-con">
+                                    7/10
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-tit">퀴즈</div>
+                                <div class="form-con">진행 전 / 진행 중 / 합격 / 없음</div>
+                            </li>
+                            <li>
+                                <div class="form-tit">설문</div>
+                                <div class="form-con">
+                                    <span class="state before">참여 전</span>
+                                    <span class="state complete">참여 완료</span>
+                                    <span class="state none">없음</span>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="btn-wrap text-center">
+                            <a href="http://kslm.m2comm.co.kr/html/mypage/edu_view.html" class="btn btn-type1 color-type4"><img src="/assets/image/sub/ic_play.png" alt=""> 강의 시청</a>
+                            <a href="#n" class="btn btn-type1 color-type5"><img src="/assets/image/sub/ic_print.png" alt=""> 이수증 출력</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="lecture-info">
+                            <p class="tit">교육명이 보여지는 영역입니다. 교육명이 보여지는 영역입니다. 교육명이 보여지는 영역입니다. 교육명이 보여지는 영역입니다.교육명이 보여지는 영역입니다.</p>
+                            <p class="date">
+                                <strong>수강기간 : </strong> YYYY.MM.DD ~ YYYY.MM.DD
+                            </p>
+                        </div>
+                        <ul class="write-wrap">
+                            <li>
+                                <div class="form-tit">수강 상태</div>
+                                <div class="form-con">
+                                    수강 중
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-tit">이수 강의</div>
+                                <div class="form-con">
+                                    7/10
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-tit">퀴즈</div>
+                                <div class="form-con">진행 전 / 진행 중 / 합격 / 없음</div>
+                            </li>
+                            <li>
+                                <div class="form-tit">설문</div>
+                                <div class="form-con">
+                                    <span class="state before">참여 전</span>
+                                    <span class="state complete">참여 완료</span>
+                                    <span class="state none">없음</span>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="btn-wrap text-center">
+                            <a href="#n" class="btn btn-type1 color-type4"><img src="/assets/image/sub/ic_play.png" alt=""> 강의 시청</a>
+                            <a href="#n" class="btn btn-type1 color-type5"><img src="/assets/image/sub/ic_print.png" alt=""> 이수증 출력</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="lecture-info">
+                            <p class="tit">교육명이 보여지는 영역입니다. 교육명이 보여지는 영역입니다. 교육명이 보여지는 영역입니다. 교육명이 보여지는 영역입니다.교육명이 보여지는 영역입니다.</p>
+                            <p class="date">
+                                <strong>수강기간 : </strong> YYYY.MM.DD ~ YYYY.MM.DD
+                            </p>
+                        </div>
+                        <ul class="write-wrap">
+                            <li>
+                                <div class="form-tit">수강 상태</div>
+                                <div class="form-con">
+                                    수강 중
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-tit">이수 강의</div>
+                                <div class="form-con">
+                                    7/10
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-tit">퀴즈</div>
+                                <div class="form-con">진행 전 / 진행 중 / 합격 / 없음</div>
+                            </li>
+                            <li>
+                                <div class="form-tit">설문</div>
+                                <div class="form-con">
+                                    <span class="state before">참여 전</span>
+                                    <span class="state complete">참여 완료</span>
+                                    <span class="state none">없음</span>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="btn-wrap text-center">
+                            <a href="#n" class="btn btn-type1 color-type4"><img src="/assets/image/sub/ic_play.png" alt=""> 강의 시청</a>
+                            <a href="#n" class="btn btn-type1 color-type5"><img src="/assets/image/sub/ic_print.png" alt=""> 이수증 출력</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="lecture-info">
+                            <p class="tit">교육명이 보여지는 영역입니다. 교육명이 보여지는 영역입니다. 교육명이 보여지는 영역입니다. 교육명이 보여지는 영역입니다.교육명이 보여지는 영역입니다.</p>
+                            <p class="date">
+                                <strong>수강기간 : </strong> YYYY.MM.DD ~ YYYY.MM.DD
+                            </p>
+                        </div>
+                        <ul class="write-wrap">
+                            <li>
+                                <div class="form-tit">수강 상태</div>
+                                <div class="form-con">
+                                    수강 중
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-tit">이수 강의</div>
+                                <div class="form-con">
+                                    7/10
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-tit">퀴즈</div>
+                                <div class="form-con">진행 전 / 진행 중 / 합격 / 없음</div>
+                            </li>
+                            <li>
+                                <div class="form-tit">설문</div>
+                                <div class="form-con">
+                                    <span class="state before">참여 전</span>
+                                    <span class="state complete">참여 완료</span>
+                                    <span class="state none">없음</span>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="btn-wrap text-center">
+                            <a href="#n" class="btn btn-type1 color-type4"><img src="/assets/image/sub/ic_play.png" alt=""> 강의 시청</a>
+                            <a href="#n" class="btn btn-type1 color-type5"><img src="/assets/image/sub/ic_print.png" alt=""> 이수증 출력</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </article>
+</section> 
+
+<?php
+include $_SERVER['DOCUMENT_ROOT'].'/include/footer.inc';
+?>

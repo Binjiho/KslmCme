@@ -1,0 +1,83 @@
+<?php
+$main = "sub";
+include $_SERVER['DOCUMENT_ROOT'].'/include/header.inc';
+?>
+
+<section id="container">
+    <article class="sub-visual">
+        <div class="sub-visual-con inner-layer">
+            <h2 class="sub-visual-tit">지원센터</h2>
+            <p>
+                지원센터를 확인하실 수 있습니다.
+            </p>
+            <div class="breadcrumb">
+                <a href="/" class="btn btn-home"><span class="hide">HOME</span></a>
+                <ul>
+                    <li>지원센터</li>
+                    <li>공지사항</li>
+                </ul>
+            </div>
+        </div>
+    </article>
+    <article class="sub-contents">
+        <div class="sub-conbox inner-layer">
+
+            <!-- s:board -->             
+            <link href="./assets/css/board.css" rel="stylesheet">
+            <link href="/assets/css/editor.css" rel="stylesheet">
+            
+            <div id="board" class="board-wrap">
+                <div class="board-view">
+                    <div class="view-contop">
+                        <h4 class="view-tit">
+                            <strong>제목 영역입니다.</strong>
+                        </h4>
+                        <div class="view-info">
+                            <span><strong>등록자 : </strong>등록자</span>
+                            <span><strong>등록일 : </strong>2024-05-23</span>
+                            <span><strong>조회수 : </strong>30</span>
+                        </div>
+                    </div>
+                    <div class="view-link text-right">
+                        <a href="https://naver.com" target="_blank">https://naver.com</a>
+                    </div>
+                    <div class="view-contents editor-contents">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit at minus omnis assumenda earum obcaecati molestiae veritatis vel esse distinctio, officia, dignissimos expedita deleniti. Est odio facilis reprehenderit dolores quis.
+                    </div>
+                    <div class="view-attach">
+                        <div class="view-attach-con">
+                            <div class="con">
+                                <a href="#n" target="_blank">파일명.jpg (다운로드 N회)</a>
+                                <a href="#n" target="_blank">파일명.pdf (다운로드 N회)</a>
+                                <a href="#n" target="_blank">파일명.png (다운로드 N회)</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn-wrap text-right">
+                        <a href="./list.html" class="btn btn-board btn-list">목록</a>
+                        <a href="./write.html" class="btn btn-board btn-modify">수정</a>
+                        <a href="#n" class="btn btn-board btn-delete">삭제</a>
+                    </div>
+
+                    <!-- 이전글/다음글 type2 -->
+                    <div class="view-move type2">
+                        <div class="view-move-con view-prev">
+                            <strong class="tit">이전글</strong>
+                            <div class="con"><a href="#n" class="ellipsis">게시글 이전글 입니다. 게시글 이전글 입니다. 게시글 이전글 입니다. 게시글 이전글 입니다.</a></div>
+                        </div>
+                        <div class="view-move-con view-next">
+                            <strong class="tit">다음글</strong>
+                            <div class="con"><a href="#n" class="ellipsis">게시글 다음글 입니다. 게시글 다음글 입니다. 게시글 다음글 입니다. 게시글 다음글 입니다.</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+            <!-- //e:board -->
+
+        </div>
+    </article>
+</section>
+
+<?php
+include $_SERVER['DOCUMENT_ROOT'].'/include/footer.inc';
+?>

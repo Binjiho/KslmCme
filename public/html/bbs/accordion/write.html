@@ -1,0 +1,100 @@
+<?php
+$main = "sub";
+include $_SERVER['DOCUMENT_ROOT'].'/include/header.inc';
+?>
+
+<section id="container">
+    <article class="sub-visual">
+        <div class="sub-visual-con inner-layer">
+            <h2 class="sub-visual-tit">지원센터</h2>
+            <p>
+                지원센터를 확인하실 수 있습니다.
+            </p>
+            <div class="breadcrumb">
+                <a href="/" class="btn btn-home"><span class="hide">HOME</span></a>
+                <ul>
+                    <li>지원센터</li>
+                    <li>FAQ</li>
+                </ul>
+            </div>
+        </div>
+    </article>
+    <article class="sub-contents">
+        <div class="sub-conbox inner-layer">
+
+            <!-- s:board -->
+            <link href="./assets/css/board.css" rel="stylesheet">
+
+            <div id="board" class="board-wrap">
+                <div class="board-write">
+                    <div class="write-form-wrap">
+                        <form action="./list.html" method="">
+                            <fieldset>
+                                <legend class="hide">글쓰기</legend>
+                                <div class="write-contop text-right">
+                                    <div class="help-text"><strong class="required">*</strong> 표시는 필수입력 항목입니다.</div>
+                                </div>
+                                <ul class="write-wrap">
+                                    <li>
+                                        <div class="form-tit">작성자</div>
+                                        <div class="form-con">
+                                                <input type="text" name="" id="" class="form-item">
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-tit">카테고리</div>
+                                        <div class="form-con">
+                                            <select name="" id="" class="form-item">
+                                                <option value="">카테고리 1</option>
+                                                <option value="">카테고리 2</option>
+                                                <option value="">카테고리 3</option>
+                                                <option value="">카테고리 4</option>
+                                                <option value="">카테고리 5</option>
+                                            </select>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-tit"><strong class="required">*</strong> 질문</div>
+                                        <div class="form-con">
+                                            <input type="text" name="" id="" class="form-item">
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-tit"><strong class="required">*</strong> 공개 여부</div>
+                                        <div class="form-con">
+                                            <div class="radio-wrap cst">
+                                                <label for="chk1" class="radio-group"><input type="radio" name="chk" id="chk1">공개</label>
+                                                <label for="chk2" class="radio-group"><input type="radio" name="chk" id="chk2">비공개</label>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-con">
+                                            에디터 영역
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-con">
+                                            파일 등록 영역
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div class="btn-wrap text-center">
+                                    <a href="./list.html" class="btn btn-board btn-cancel">취소</a>
+                                    <button type="submit" class="btn btn-board btn-modify">수정</button>
+                                    <button type="submit" class="btn btn-board btn-write">등록</button>
+                                </div>                      
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>                
+            <!-- //e:board -->
+            
+        </div>
+    </article>
+</section>
+
+<?php
+include $_SERVER['DOCUMENT_ROOT'].'/include/footer.inc';
+?>

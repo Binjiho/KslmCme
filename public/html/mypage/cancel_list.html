@@ -1,0 +1,120 @@
+<?php
+$main = "sub";
+include $_SERVER['DOCUMENT_ROOT'].'/include/header.inc';
+?>
+
+<section id="container">
+    <article class="sub-visual">
+        <div class="sub-visual-con inner-layer">
+            <h2 class="sub-visual-tit">마이페이지</h2>
+            <p>
+                마이페이지를 확인하실 수 있습니다.
+            </p>
+            <div class="breadcrumb">
+                <a href="/" class="btn btn-home"><span class="hide">HOME</span></a>
+                <ul>
+                    <li>마이페이지</li>
+                    <li>온라인 강의실</li>
+                </ul>
+            </div>
+        </div>
+    </article>
+    <article class="sub-contents">
+        <div class="sub-conbox inner-layer">
+           <div class="sub-tab-wrap type3">
+                <ul class="sub-tab-menu">
+                    <li class="on"><a href="http://kslm.m2comm.co.kr/html/mypage/edu_list.html"><span>온라인 강의실</span></a></li>
+                    <li><a href="http://kslm.m2comm.co.kr/html/mypage/lib_list.html"><span>나의 자료실</span></a></li>
+                    <li><a href="http://kslm.m2comm.co.kr/html/mypage/info.html"><span>개인정보</span></a></li>
+                </ul>
+            </div>
+            <div class="sub-tab-wrap type1">
+                <ul class="sub-tab-menu">
+                    <li><a href="http://kslm.m2comm.co.kr/html/mypage/edu_list.html">교육 수강</a></li>
+                    <li class="on"><a href="http://kslm.m2comm.co.kr/html/mypage/cancel_list.html">교육신청/취소</a></li>
+                    <li><a href="http://kslm.m2comm.co.kr/html/mypage/print_list.html">이수증 출력</a></li>
+                </ul>
+            </div>
+            <div class="sch-result-list">
+                <ul class="board-list lecture mypage">
+                    <li class="list-head">
+                        <div class="bbs-no bbs-col-xs">번호</div>
+                        <div class="bbs-tit n-bar">교육명</div>
+                        <div class="bbs-date bbs-col-xs2 n-bar">신청일</div>
+                        <div class="bbs-col-xs2">이수여부</div>
+                        <div class="bbs-col-xs2">결제 상태</div>
+                        <div class="bbs-manage bbs-col-s n-bar">관리</div>
+                    </li>
+
+                    <li>
+                        <div class="bbs-no bbs-col-xs">10</div>
+                        <div class="bbs-tit text-left n-bar">
+                            Aesthetic Surgery Program
+                        </div>
+                        <div class="bbs-date bbs-col-xs2 n-bar">YYYY.MM.DD</div>
+                        <div class="bbs-col-xs2">미이수</div>
+                        <div class="bbs-col-xs2">무료</div>
+                        <div class="bbs-manage bbs-col-s n-bar">
+                            <a href="#n" class="btn btn-small btn-cancel">취소</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bbs-no bbs-col-xs">9</div>
+                        <div class="bbs-tit text-left n-bar">
+                            Aesthetic Surgery Program
+                        </div>
+                        <div class="bbs-date bbs-col-xs2 n-bar">YYYY.MM.DD</div>
+                        <div class="bbs-col-xs2">이수</div>
+                        <div class="bbs-col-xs2">미결제</div>
+                        <div class="bbs-manage bbs-col-s n-bar">
+                            <a href="#n" class="btn btn-small btn-pay-info">입금정보</a>
+                            <a href="#n" class="btn btn-small btn-cancel">취소</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bbs-no bbs-col-xs">8</div>
+                        <div class="bbs-tit text-left n-bar">
+                            Aesthetic Surgery Program
+                        </div>
+                        <div class="bbs-date bbs-col-xs2 n-bar">YYYY.MM.DD</div>
+                        <div class="bbs-col-xs2">미이수</div>
+                        <div class="bbs-col-xs2">결제완료</div>
+                        <div class="bbs-manage bbs-col-s n-bar">
+                            무통장입금 
+                            <a href="#n" class="btn btn-small btn-receipt">영수증</a>
+                            <a href="#n" class="btn btn-small btn-cancel">취소</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bbs-no bbs-col-xs">7</div>
+                        <div class="bbs-tit text-left n-bar">
+                            Aesthetic Surgery Program
+                        </div>
+                        <div class="bbs-date bbs-col-xs2 n-bar">YYYY.MM.DD</div>
+                        <div class="bbs-col-xs2">미이수</div>
+                        <div class="bbs-col-xs2">취소 처리 중</div>
+                        <div class="bbs-manage bbs-col-s n-bar">
+                            
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bbs-no bbs-col-xs">6</div>
+                        <div class="bbs-tit text-left n-bar">
+                            Aesthetic Surgery Program
+                        </div>
+                        <div class="bbs-date bbs-col-xs2 n-bar">YYYY.MM.DD</div>
+                        <div class="bbs-col-xs2">미이수</div>
+                        <div class="bbs-col-xs2">취소 완료</div>
+                        <div class="bbs-manage bbs-col-s n-bar">
+                            YYYY.MM.DD
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </article>
+</section> 
+
+<?php
+include $_SERVER['DOCUMENT_ROOT'].'/include/footer.inc';
+?>

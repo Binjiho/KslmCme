@@ -1,0 +1,408 @@
+@charset "utf-8";
+/* =====================================
+
+	* editors contents
+
+====================================== */
+.editor-contents{
+    font-family: initial;
+    color: initial;
+}
+.editor-contents p{
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+.editor-contents tt{
+    font-family: monospace;
+}
+.editor-contents address{
+    display: block;
+}
+.editor-contents blockquote{
+    padding: 2px 0;
+    border-style: solid;
+    border-color: #ccc;
+    border-width: 0;
+}
+.editor-contents blockquote{
+    padding-left: 20px;
+    padding-right: 8px;
+    border-left-width: 5px;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+}
+.editor-contents ol,
+.editor-contents ul,
+.editor-contents dl{
+    margin-right: 0px;
+    padding: 0 40px;
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+.editor-contents ul li{
+    list-style: disc;
+}
+.editor-contents ol li{
+    list-style: decimal;
+}
+.editor-contents div{
+    text-align: -webkit-auto;
+}
+
+.editor-contents h1,
+.editor-contents h2,
+.editor-contents h3,
+.editor-contents h4,
+.editor-contents h5,
+.editor-contents h6{
+    font-weight: normal;
+}
+.editor-contents h1{
+    display: block;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+.editor-contents h2{
+    display: block;
+    font-size: 1.5em;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+.editor-contents h3{
+    display: block;
+    font-size: 1.17em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+.editor-contents h4{
+    display: block;
+    font-size: 1.17em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+.editor-contents h5{
+    display: block;
+    font-size: 0.83em;
+    margin-block-start: 1.67em;
+    margin-block-end: 1.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+.editor-contents h6{
+    display: block;
+    font-size: 0.67em;
+    margin-block-start: 2.33em;
+    margin-block-end: 2.33em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+.editor-contents hr{
+    border: 0px;
+    border-top: 1px solid #ccc;
+}
+.editor-contents pre{
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    -moz-tab-size: 4;
+    tab-size: 4;
+}
+.editor-contents .marker{
+    background-color: Yellow;
+}
+/* .editor-contents figure{
+    text-align: center;
+    outline: solid 1px #ccc;
+    background: rgba(0, 0, 0, 0.05);
+    padding: 10px;
+    margin: 10px 20px;
+    display: inline-block;
+}
+.editor-contents figure>figcaption{
+    text-align: center;
+    display: block;
+} */
+.editor-contents a > img{
+    padding: 1px;
+    margin: 1px;
+    border: none;
+}
+
+.editor-contents,
+.editor-contents *{
+    font: inherit;
+}
+.editor-contents{
+    font-style: normal;
+    font-weight: normal;
+}
+.editor-contents p{
+    margin: 3px 0 6px 0;
+}
+.editor-contents h1,
+.editor-contents h2,
+.editor-contents h3,
+.editor-contents h4,
+.editor-contents h5,
+.editor-contents h6{
+    margin: 15px 0 6px 0;
+    font-weight: bold;
+}
+.editor-contents h5,
+.editor-contents h6{
+    font-weight: normal;
+}
+.editor-contents caption{
+    font-style: italic;
+}
+.editor-contents a:link{
+    text-decoration: underline;
+}
+.editor-contents a:visited{
+    text-decoration: underline;
+}
+.editor-contents a:active{
+    text-decoration: underline;
+}
+.editor-contents a:focus,
+.editor-contents a:hover{
+    text-decoration: underline;
+}
+.editor-contents hr{
+    color: #000;
+    background: #fff;
+    height: 1px;
+    border-style: solid;
+    border-width: 1px 0 0 0;
+    border-color: #000;
+}
+.editor-contents ul,
+.editor-contents ol,
+.editor-contents dl{
+    margin: 12px 0;
+}
+.editor-contents ul li,
+.editor-contents ol li{
+    margin: 0 0 6px 24px;
+    list-style-position: outside;
+}
+.editor-contents ul li{
+    list-style-type: disc;
+}
+.editor-contents ul li ul li{
+    list-style-type: circle;
+}
+.editor-contents ul li ul li ul li{
+    list-style-type: square;
+}
+.editor-contents ul li{
+    list-style-type: disc;
+}
+.editor-contents ol li{
+    list-style-image: none;
+    list-style-type: decimal;
+}
+.editor-contents ul{
+    list-style-type: disc;
+}
+.editor-contents ol{
+    list-style-type: decimal;
+}
+.editor-contents ol ol{
+    list-style: upper-alpha;
+}
+.editor-contents ol ol ol{
+    list-style: lower-roman;
+}
+.editor-contents ol ol ol ol{
+    list-style: lower-alpha;
+}
+.editor-contents dl dt{
+    list-style-type: disc;
+    margin: 0;
+    list-style-position: outside;
+    font-weight: bold;
+}
+.editor-contents dl dd{
+    margin: 0 0 12px 12px;
+    list-style-image: none;
+    list-style-type: none;
+}
+.editor-contents address{
+    margin: 6px 0;
+}
+.editor-contents b,
+.editor-contents strong{
+    font-weight: bold
+}
+.editor-contents em,
+.editor-contents i,
+.editor-contents cite,
+.editor-contents dfn{
+    font-style: italic;
+}
+.editor-contents cite{
+    margin: 0 0 6px 24px;
+}
+.editor-contents abbr,
+.editor-contents acronym{
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+.editor-contents abbr,
+.editor-contents acronym,
+.editor-contents dfn{
+    border-bottom: 1px solid #ccc;
+    cursor: help;
+}
+.editor-contents blockquote{
+    margin: 6px 0 6px 24px;
+}
+.editor-contents sup{
+    vertical-align: super;
+    line-height: 1.2;
+}
+.editor-contents sub{
+    vertical-align: sub;
+    line-height: 1.2;
+}
+.editor-contents tt,
+.editor-contents code,
+.editor-contents samp,
+.editor-contents kbd{
+    background: #000 none repeat scroll 0 0;
+    border: 1px solid #000;
+    margin: 6px 0;
+}
+.editor-contents pre{
+    border: 1px solid #bbb;
+    background: #f9f9f9;
+    margin: 6px 0;
+}
+.editor-contents del,
+.editor-contents s,
+.editor-contents strike{
+    color: #666;
+    text-decoration: line-through;
+}
+.editor-contents ins,
+.editor-contents dfn{
+    border-bottom: 1px solid #ccc;
+}
+.editor-contents fieldset{
+    border: 1px solid #ccc;
+    margin-top: 12px;
+}
+.editor-contents legend{
+    background: #fff;
+    margin: 0 6px;
+}
+.editor-contents label{
+    font-weight: bold;
+}
+.editor-contents input{
+    padding: 2px
+}
+.editor-contents textarea{
+    padding: 2px;
+}
+.editor-contents select,
+.editor-contents button{
+    cursor: pointer;
+    padding: 2px;
+}
+.editor-contents table{
+    table-layout: auto;
+    width: auto;
+    border-color: #ccc;
+    max-width: 100% !important;
+}
+.editor-contents table th{
+    font-weight: bold;
+}
+.editor-contents table tfoot th,
+.editor-contents table tfoot td{
+    background: #eee;
+}
+.editor-contents thead,
+.editor-contents tbody,
+.editor-contents tfoot,
+.editor-contents tr,
+.editor-contents th,
+.editor-contents td{
+    border: inherit;
+}
+.editor-contents img{
+    height: auto;
+    max-width: 100%;
+}
+
+/* tinymce - content.css */
+table{
+	border-collapse:collapse
+}
+.editor-contents table:not([cellpadding]) td,
+.editor-contents table:not([cellpadding]) th{
+	padding:.4rem
+}
+table[border]:not([border="0"]):not([style*=border-width]) td,
+table[border]:not([border="0"]):not([style*=border-width]) th{
+	border-width:1px
+}
+table[border]:not([border="0"]):not([style*=border-style]) td,
+table[border]:not([border="0"]):not([style*=border-style]) th{
+	border-style:solid
+}
+table[border]:not([border="0"]):not([style*=border-color]) td,
+table[border]:not([border="0"]):not([style*=border-color]) th{
+	border-color:#ccc
+}
+figure{
+	display:table;
+	margin:1rem auto
+}
+figure figcaption{
+	color:#999;
+	display:block;
+	margin-top:.25rem;
+	text-align:center
+}
+hr{
+	border-color:#ccc;
+	border-style:solid;
+	border-width:1px 0 0 0
+}
+code{
+	background-color:#e8e8e8;
+	border-radius:3px;
+	padding:.1rem .2rem
+}
+.mce-content-body:not([dir=rtl]) blockquote{
+	border-left:2px solid #ccc;
+	margin-left:1.5rem;
+	padding-left:1rem
+}
+.mce-content-body[dir=rtl] blockquote{
+	border-right:2px solid #ccc;
+	margin-right:1.5rem;
+	padding-right: 1rem
+}
