@@ -3,7 +3,7 @@ name: Deploy to Server
 on:
   push:
     branches:
-      - main  # main 브랜치에 푸시될 때마다 배포가 트리거됨
+      - master  # master 브랜치에 푸시될 때마다 배포가 트리거됨
 
 jobs:
   deploy:
