@@ -1,5 +1,4 @@
-<?
-
+<?php
 $code = 'notice';
 
 return [

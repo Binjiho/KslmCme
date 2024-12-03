@@ -20,4 +20,4 @@ jobs:
 
       - name: Deploy to server
         run: |
-          ssh -o StrictHostKeyChecking=no -p 22006 kslm@117.52.153.219 "cd /home/virtual/kslm/htdocs/kslm && git pull origin master && ./deploy.sh"
+          ssh -v -o StrictHostKeyChecking=no -p 22006 kslm@117.52.153.219 "cd /home/virtual/kslm/htdocs/kslm && git pull origin master && ./deploy.sh"
