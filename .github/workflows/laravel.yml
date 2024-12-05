@@ -21,13 +21,13 @@ jobs:
           chmod 700 ~/.ssh  # ~/.ssh 디렉토리 권한 설정
           echo "Setting up SSH key..."
 
-          echo "Host 117.52.153.219" >> ~/.ssh/config
-          echo "  Port 22006" >> ~/.ssh/config
-          echo "  User kslm" >> ~/.ssh/config
-          echo "  IdentityFile ~/.ssh/id_rsa" >> ~/.ssh/config
-          echo "  StrictHostKeyChecking no" >> ~/.ssh/config
-          echo "  LogLevel DEBUG3" >> ~/.ssh/config
-          echo "Setting up SSH key..."
+#          echo "Host 117.52.153.219" >> ~/.ssh/config
+#          echo "  Port 22006" >> ~/.ssh/config
+#          echo "  User kslm" >> ~/.ssh/config
+#          echo "  IdentityFile ~/.ssh/id_rsa" >> ~/.ssh/config
+#          echo "  StrictHostKeyChecking no" >> ~/.ssh/config
+#          echo "  LogLevel DEBUG3" >> ~/.ssh/config
+#          echo "Setting up SSH key..."
 
 #          # Known hosts 추가
 #          ssh-keyscan -H 117.52.153.219 >> ~/.ssh/known_hosts
@@ -35,7 +35,7 @@ jobs:
 
       - name: Debug SSH connection
         run: |
-          ssh -v -F ~/.ssh/config -i ~/.ssh/id_rsa -p 22006 kslm@117.52.153.219 "echo 'SSH 연결 성공!'"
+          ssh -v /home/kslm/.ssh/config -i ~/.ssh/id_rsa -p 22006 kslm@117.52.153.219 "echo 'SSH 연결 성공!'"
 
       - name: Executing remote SSH commands using SSH key
         uses: appleboy/ssh-action@v1.2.0
