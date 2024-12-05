@@ -30,7 +30,7 @@ jobs:
             host: ${{ secrets.HOST }}
             username: ${{ secrets.USERNAME }}
             key: ${{ secrets.SSH_PRIVATE_KEY }}
-            port: 22006  # 원격 서버의 SSH 포트
+            port: 22006
             script: |
               echo "Deploying..."
               cd /home/virtual/kslm/htdocs/kslm  # 올바른 경로로 수정
