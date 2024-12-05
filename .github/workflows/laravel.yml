@@ -13,14 +13,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2  # 레포지토리 코드를 체크아웃
 
-#      - name: Setup SSH key
-#        run: |
-#          mkdir -p ~/.ssh
-#          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-#          chmod 600 ~/.ssh/id_rsa
-#          chmod 700 ~/.ssh  # ~/.ssh 디렉토리 권한 설정
-#          echo "Setting up SSH key..."
-#
+      - name: Setup SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          chmod 700 ~/.ssh  # ~/.ssh 디렉토리 권한 설정
+          echo "Setting up SSH key..."
+
 #          # Known hosts 추가 (보안상 서버의 호스트 키를 자동으로 추가)
 #          touch ~/.ssh/known_hosts
 #          chmod 644 ~/.ssh/known_hosts  # known_hosts 권한 설정
@@ -29,7 +29,7 @@ jobs:
 #          ssh-keyscan github.com >> ~/.ssh/known_hosts
 #          ssh-keyscan 117.52.153.219 >> ~/.ssh/known_hosts
 #          echo "SSH key setup completed"
-#
+
 
       - name: Debug SSH connection
         run: |
