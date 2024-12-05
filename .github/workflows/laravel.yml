@@ -27,7 +27,7 @@ jobs:
           echo "Chmod..."
 
           ssh-keyscan github.com >> ~/.ssh/known_hosts
-          ssh-keyscan -p 22006 ${{ secrets.HOST }} >> ~/.ssh/known_hosts
+          ssh-keyscan -p 22006 117.52.153.219 >> ~/.ssh/known_hosts
           echo "SSH key setup completed"
 
 
