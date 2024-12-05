@@ -13,15 +13,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2  # 레포지토리 코드를 체크아웃
 
-      - name: Debug SSH connection
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: 22006
-          script: |
-            ssh -v -p 22006 kslm@${{ secrets.HOST }} "echo 'SSH 연결 성공!'"
+      - name: Setup SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          # Known hosts 추가 (보안상 서버의 호스트 키를 자동으로 추가)
+          ssh-keyscan -H ${{ secrets.HOST }} >> ~/.ssh/known_hosts
 
       - name: Executing remote SSH commands using SSH key
         uses: appleboy/ssh-action@v1.2.0
@@ -31,7 +29,7 @@ jobs:
             key: ${{ secrets.SSH_PRIVATE_KEY }}
             port: 22006
             script: |
-              echo "Deploying..."
+              echo "Deploying."
               cd /home/virtual/kslm/htdocs/kslm  # 올바른 경로로 수정
               git pull origin master
               sh deploy.sh
