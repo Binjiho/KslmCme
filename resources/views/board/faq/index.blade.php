@@ -24,23 +24,32 @@
 
         <article class="sub-contents">
 
-            @include('layouts.include.sub-menu-wrap')
-
                 <div class="sub-conbox inner-layer">
+					 @include('layouts.include.sub-menu-wrap')
 
                     <!-- s:board -->
                     <div id="board" class="board-wrap">
                         <ul class="acco-list js-acco-list">
                         @forelse($list as $row)
-                            @continue(!isAdmin() && thisPK() != $row->u_sid)
                             <li class="ef01">
                                 <div class="acco-tit">
                                     <a href="#n">{{ $row->subject ?? '' }}</a></div>
                                 @if(!empty($row->contents) || isAdmin())
                                 <div class="acco-con">
+
+                                    @if(!empty($row->reply))
                                     <div class="view-contents editor-contents">
-                                        {!! $row->contents ?? '' !!}
+                                        {!! $row->reply->comment ?? '' !!}
                                     </div>
+                                    @endif
+                                        @if(isAdmin())
+                                            <div class="bbs-admin text-right">
+                                                <a href="{{ route('board.reply', ['code' => $code, 'b_sid' => $row->sid ?? 0, 'sid'=>$row->reply->sid ?? 0]) }}" class="btn btn-modify"><span class="hide">수정</span></a>
+                                                @if($row->reply)
+                                                <a href="#n" class="btn btn-delete reply-delete" data-sid="{{ $row->reply->sid ?? 0 }}"><span class="hide">삭제</span></a>
+                                                @endif
+                                            </div>
+                                        @endif
 
                                     @if(($row->files_count ?? 0) > 0)
                                     <div class="view-attach">
@@ -56,15 +65,17 @@
                                     </div>
                                     @endif
 
-                                    @if(thisPK() != $row->u_sid || isAdmin())
+{{--                                    @if(thisPK() == $row->u_sid || isAdmin())--}}
+                                    @if(isAdmin())
                                         <div class="bbs-admin text-right">
                                             <select name="hide" id="hide" class="form-item change-hide">
                                                 <option value="N" {{ ($row->hide ?? '') == 'N' ? 'selected' : '' }}>공개</option>
                                                 <option value="Y" {{ ($row->hide ?? '') == 'Y' ? 'selected' : '' }}>비공개</option>
                                             </select>
                                             @if(isAdmin())
-                                            <a href="{{ route('board.reply', ['code' => $code, 'sid' => $row->sid]) }}" class="btn btn-modify"><span class="hide">수정</span></a>
-                                            <a href="#n" class="btn btn-delete"><span class="hide">삭제</span></a>
+                                            <a href="{{ route('board.upsert', ['code' => $code, 'sid' => $row->sid ?? 0]) }}" class="btn btn-modify"><span class="hide">수정</span></a>
+
+                                            <a href="#n" class="btn btn-delete board-delete" data-sid="{{ $row->sid ?? 0 }}"><span class="hide">삭제</span></a>
                                             @endif
                                         </div>
                                     @endif
@@ -110,13 +121,24 @@
             }
         });
 
-        $(document).on('click', '.btn-delete', function() {
+        $(document).on('click', '.board-delete', function() {
             const ajaxData = {
                 case: 'board-delete',
-                sid: getPK(this),
+                sid: $(this).data('sid'),
             }
 
             if (confirm('정말로 삭제 하시겠습니까?')) {
+                callAjax(dataUrl, ajaxData);
+            }
+        });
+
+        $(document).on('click', '.reply-delete', function() {
+            const ajaxData = {
+                case: 'reply-delete',
+                sid: $(this).data('sid'),
+            }
+
+            if (confirm('정말로 답변을 삭제 하시겠습니까?')) {
                 callAjax(dataUrl, ajaxData);
             }
         });

@@ -552,7 +552,7 @@ html.ovh{
 .write-wrap dt,
 .write-wrap dd{
     display: table-cell;
-    padding: 15px 25px;
+    padding: 10px 15px;
     font-size: 1.6rem;
     vertical-align: middle;
     word-break: keep-all;
@@ -592,12 +592,14 @@ html.ovh{
 .form-item{
     display: inline-block;
     height: 40px;
-    padding: 0 10px;
+    padding: 0 10px;	
+	margin: 0 10px;
     border: 1px solid #ccc;
     border-radius: 3px;
     background-color: #fff;
     vertical-align: top;
 }
+
 .form-item::placeholder{
     color: #a8a8a8;
 }
@@ -803,7 +805,7 @@ textarea.form-item{
     width: 100%;
 }
 .filebox .upload-name{
-    width: calc(100% - 105px);
+    width: calc(100% - 130px);
 }
 .filebox label{
     display: inline-block;
@@ -834,10 +836,10 @@ textarea.form-item{
 }
 
 /* radio, checkbox custom */
-.radio-wrap,
+/*.radio-wrap,
 .checkbox-wrap{
     margin: -5px -10px;
-}
+}*/
 .radio-wrap.full,
 .checkbox-wrap.full{
     margin: 0 -10px;
@@ -1238,7 +1240,7 @@ textarea.form-item{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100% 0;
+    width: 100%;
     height: 100%;
     padding: 3px 0;
     font-size: 1.4rem;
@@ -1248,6 +1250,10 @@ textarea.form-item{
 }
 .paging > li:not(.num){
     border: 1px solid #cccccc;
+	background-repeat: no-repeat;
+    background-position: center;
+    border-color: #cccccc;
+    background-color: #fff;
 }
 .paging .prev{
     margin-right: 15px;

@@ -118,9 +118,18 @@ class Education extends Authenticatable
             'sid',               // Lecture에서 외래 키 (lecture sid)
             'sid',               // Education에서 로컬 키 (education sid)
             'lsid'               // EduLecList에서 로컬 키 (lecture sid)
-        );
+        )
+        ->whereHas('lecture_relation.edu', function ($query) {
+            $query->where('hide', 'N');
+        });
     }
 
+    public function LecturesWithHideN($query)
+    {
+        return $query->whereHas('lectures', function ($query) {
+            $query->where('educations.hide', 'N');
+        });
+    }
     public function selfEducation($sid)
     {
         return Education::where(['sid'=>$sid])->first();

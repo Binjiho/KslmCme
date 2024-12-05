@@ -39,13 +39,13 @@
 
                     <div class="btn-wrap">
                         @if($workshop->abs_realfile)
-                        <a href="{{ $workshop->downloadUrl('abs') }}" class="btn btn-small2 color-type3">초록집</a>
+                        <a href="{{ $workshop->downloadUrl('abs') }}" class="btn btn-small2 color-type1">초록집</a>
                         @endif
                         @if($workshop->book_realfile)
-                        <a href="{{ $workshop->downloadUrl('book') }}" class="btn btn-small2 color-type1">프로그램북</a>
+                        <a href="{{ $workshop->downloadUrl('book') }}" class="btn btn-small2 color-type4">프로그램북</a>
                         @endif
                         @if($workshop->book_realfile2)
-                            <a href="{{ $workshop->downloadUrl('book2') }}" class="btn btn-small2 color-type1">프로그램북2</a>
+                            <a href="{{ $workshop->downloadUrl('book2') }}" class="btn btn-small2 color-type5">워크샵북</a>
                         @endif
                     </div>
 
@@ -114,9 +114,15 @@
                             <a href="javascript:;" data-type='date' data-tab=ALL class="tab-btn">전체</a>
                         </li>
                         @foreach($workshop->date as $key => $val)
+							@if($val == 'P')
+							<li class="{{ (request()->date_tab ?? 'P') == (string)$key ? 'on':'' }}">
+                            <a href="javascript:;" data-type='date' data-tab={{ $key }} class="tab-btn">Poster</a>
+							</li>
+							@else	
                             <li class="{{ (request()->date_tab ?? 'ALL') == (string)$key ? 'on':'' }}">
                                 <a href="javascript:;" data-type='date' data-tab={{ $key }} class="tab-btn">{{ $val }}</a>
                             </li>
+							 @endif
                         @endforeach
                     </ul>
                 </div>
@@ -187,7 +193,7 @@
                                     <td>
                                         @if(!empty($val->video_link))
                                             @if(thisLevel()=='M' || in_array(thisLevel(),$val->workshop->limit_level) !== false)
-                                                <a href="{{ route('workshop.popup',['sid'=>$val->sid,'wsid'=>request()->wsid]) }}" class="btn btn-small btn-type1 color-type20 call-popup" data-popup_name="subsession-popup" data-width="850" data-height="900">
+                                                <a href="{{ route('workshop.popup',['sid'=>$val->sid,'wsid'=>request()->wsid]) }}" class="btn btn-small btn-type1 color-type20 call-popup" data-popup_name="subsession-popup" data-width="1200" data-height="670">
                                                     <img src="/assets/image/sub/ic_video.png" alt="">
                                                 </a>
                                             @else

@@ -48,7 +48,7 @@
     margin-top: 45px;
 }
 .btn.btn-type1{
-    min-width: 110px;
+    min-width: 80px;
     padding: 12px 30px;
     margin: 3px;
     border-radius: 2px;
@@ -414,3 +414,13 @@
     padding-left: 18px;
 }*/
 
+.paging .first {
+    background-image: url(/assets/image/board/ic_first.png);
+}
+.paging .next {
+    margin-left: 15px;
+    background-image: url(/assets/image/board/ic_next.png);
+}
+.paging .last {
+    background-image: url(/assets/image/board/ic_last.png);
+}

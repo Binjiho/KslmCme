@@ -20,8 +20,8 @@
                     <div class="quiz-result">
                         <div class="chart-wrap">
                             <div class="chart">
-                                <span class="graph" style="background: conic-gradient(#dd6014 0% {{ $sac_info->getQuizViewCnt($sac_info->sid, 'percent') }}%, #bfbfbf {{ $sac_info->getQuizViewCnt($sac_info->sid, 'percent') }}% 100%)">
-                                    <span class="text"><strong>{{ $sac_info->getQuizViewCnt($sac_info->sid, 'complete') }} </strong> / {{ $sac_info->getQuizViewCnt($sac_info->sid) }}</span>
+                                <span class="graph" style="background: conic-gradient(#dd6014 0% {{ $sac_info->getQuizViewCnt(thisPk(), 'percent') }}%, #bfbfbf 1% 100%)">
+                                    <span class="text"><strong>{{ $sac_info->getQuizViewCnt(thisPk(), 'complete') }} </strong> / {{ $sac_info->getQuizViewCnt(thisPk()) }}</span>
                                 </span>
                             </div>
                             @if( ($sac_info->quiz_status ?? '') == 'C')

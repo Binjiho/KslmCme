@@ -2,6 +2,18 @@
 
 @section('addStyle')
     <style>
+        /* 인쇄할 때만 적용될 스타일 */
+        @media print {
+            body * {
+                visibility: hidden; /* 페이지 전체를 숨김 */
+            }
+            .print-conbox * {
+                visibility: visible; /* 인쇄할 영역만 보이도록 */
+            }
+            .no-print {
+                display: none;
+            }
+        }
         .print-wrap{
             width: 600px;
             max-width: 600px;
@@ -104,7 +116,7 @@
             </div>
         </div>
     </div>
-    <div class="btn-wrap text-center">
+    <div class="btn-wrap text-center no-print">
         <a href="javascript:;" class="btn btn-type1 color-type2" onclick="self.close();">취소</a>
         <a href="javascript:;" class="btn btn-type1 color-type5" onclick="print_self();">인쇄하기</a>
     </div>

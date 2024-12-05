@@ -20,7 +20,7 @@ class EducationServices extends AppServices
 {
     public function indexService(Request $request)
     {
-        $query = Education::orderByDesc('created_at')->with(['lectures']);
+        $query = Education::orderByDesc('created_at');
         $query->where('del', '=', 'N');
 
         if ( !isDev() ) {
@@ -225,6 +225,12 @@ class EducationServices extends AppServices
                 $request->merge([ 'esid' => $request->esid ]);
                 $request->merge([ 'pay_method' => 'F' ]);
                 $request->merge([ 'pay_status' => 'F' ]);
+                if($edu->quiz_yn == 'Y'){
+                    $request->merge([ 'quiz_status' => 'U' ]);
+                }
+                if($edu->survey_yn == 'Y'){
+                    $request->merge([ 'survey_status' => 'U' ]);
+                }
                 $sac->setByData($request);
                 $sac->save();
 

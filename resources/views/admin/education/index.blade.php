@@ -71,7 +71,7 @@
             </form>
 
             <div class="text-right">
-                <a href="{{ route('education.upsert') }}" class="btn btn-small btn-type1 color-type20 call-popup" data-popup_name="education-upsert" data-width="850" data-height="900">
+                <a href="{{ route('education.upsert') }}" class="btn btn-type1 color-type20 call-popup" data-popup_name="education-upsert" data-width="1200" data-height="900">
                     교육 등록
                 </a>
             </div>
@@ -81,15 +81,15 @@
                     <caption class="hide">목록</caption>
 
                     <colgroup>
-                        <col style="width: 5%;">
+                        <col style="width: 3%;">
                         <col style="width: 10%;">
-                        <col style="width: 8%;">
+                        <col style="width: 7%;">
                         <col>
-                        <col style="width: 15%;">
+                        <col style="width: 12%;">
 
-                        <col style="width: 8%;">
-                        <col style="width: 10%;">
-                        <col style="width: 10%;">
+                        <col style="width: 7%;">
+                        <col style="width: 7%;">
+                        <col style="width: 7%;">
                         <col style="width: 5%;">
                     </colgroup>
 
@@ -98,7 +98,7 @@
                         <th scope="col">No</th>
                         <th scope="col">노출여부</th>
                         <th scope="col">교육유형</th>
-                        <th scope="col"><a href="{{ route('education',['sort'=>'title','ord'=>( request()->ord == 'ASC' ? 'DESC' : 'ASC')]) }}">교육명▼▲</a></th>
+                        <th scope="col"><a href="{{ route('education',['sort'=>'title','ord'=>( request()->ord == 'ASC' ? 'DESC' : 'ASC')]) }}">교육명 ▼ ▲</a></th>
                         <th scope="col">수강기간</th>
 
                         <th scope="col">등록일</th>
@@ -123,28 +123,28 @@
                                 </div>
                             </td>
                             <td>{{ $educationConfig['category'][($row->category ?? 'N')] ?? '' }}</td>
-                            <td>{{ $row->title ?? '' }}</td>
+                            <td class="text-left">{{ $row->title ?? '' }}</td>
                             <td>{{ $row->edu_sdate->format('Y-m-d') ?? '' }} - {{ ($row->edu_limit_yn ?? '') == 'N' ? '기한없음' : ($row->edu_edate->format('Y-m-d') ?? '') }}</td>
 
                             <td>{{ $row->created_at->format('Y-m-d') ?? '' }}</td>
                             <td>
-                                {{ $row->sac_cnt() ?? 0 }} 명
-                                <a href="{{ route('education.sac',['esid'=>$row->sid]) }}" class="btn btn-small btn-type1 color-type20">
+                                {{ $row->sac_cnt() ?? 0 }} 명<br>
+                                <a href="{{ route('education.sac',['esid'=>$row->sid]) }}" class="btn btn-small btn-type1 color-type15">
                                     신청내역
-                                </a>
-                                <a href="{{ route('education.view',['esid'=>$row->sid]) }}" class="btn btn-small btn-type1 color-type20" >
+                                </a><br>
+                                <a href="{{ route('education.view',['esid'=>$row->sid]) }}" class="btn btn-small btn-type1 color-type15" >
                                     수강기록
                                 </a>
                             </td>
                             <td>
-                                <a href="{{ route('education.lecture',['esid'=>$row->sid]) }}" class="btn btn-small btn-type1 color-type20 ">
+                                <a href="{{ route('education.lecture',['esid'=>$row->sid]) }}" class="btn btn-small btn-type1 color-type13 ">
                                     강의등록
                                 </a>
 
                                 @if(($row->quiz_yn ?? '') == 'N')
                                     <br>퀴즈등록 N
                                 @else
-                                    <a href="{{ route('education.quiz',['esid'=>$row->sid]) }}" class="btn btn-small btn-type1 color-type20" >
+                                    <a href="{{ route('education.quiz',['esid'=>$row->sid]) }}" class="btn btn-small btn-type1 color-type13" >
                                         퀴즈등록
                                     </a>
                                 @endif
@@ -152,14 +152,14 @@
                                 @if(($row->survey_yn ?? '') == 'N')
                                     <br>설문등록 N
                                 @else
-                                    <a href="{{ route('education.survey',['esid'=>$row->sid]) }}" class="btn btn-small btn-type1 color-type20" >
+                                    <a href="{{ route('education.survey',['esid'=>$row->sid]) }}" class="btn btn-small btn-type1 color-type13" >
                                         설문등록
                                     </a>
                                 @endif
                             </td>
 
                             <td>
-                                <a href="{{ route('education.upsert', ['sid' => $row->sid]) }}" class="btn-admin call-popup" data-popup_name="education-upsert" data-width="850" data-height="900">
+                                <a href="{{ route('education.upsert', ['sid' => $row->sid]) }}" class="btn-admin call-popup" data-popup_name="education-upsert" data-width="1200" data-height="900">
                                     <img src="/assets/image/admin/ic_modify.png" alt="수정">
                                 </a>
 

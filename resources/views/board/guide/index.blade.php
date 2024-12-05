@@ -21,11 +21,10 @@
                 </div>
             </div>
         </article>
-        <article class="sub-contents">
-
-            @include('layouts.include.sub-menu-wrap')
+        <article class="sub-contents">           
 
             <div class="sub-conbox inner-layer">
+				@include('layouts.include.sub-menu-wrap')
                 <!-- s:준비중 -->
                 <div class="ready-wrap">
                     <img src="/assets/image/sub/img_ready.png" alt="">

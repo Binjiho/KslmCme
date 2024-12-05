@@ -22,11 +22,10 @@
             </div>
         </article>
 
-        <article class="sub-contents">
-
-            @include('layouts.include.sub-menu-wrap')
+        <article class="sub-contents">            
 
             <div class="sub-conbox inner-layer">
+				@include('layouts.include.sub-menu-wrap')
 
                 <!-- s:board -->
                 <div class="sch-wrap type3 skin1">

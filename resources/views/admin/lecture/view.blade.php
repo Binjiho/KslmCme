@@ -5,12 +5,11 @@
 @endsection
 
 @section('contents')
-
+<div style="padding:25px;">
     <div class="popup-tit-wrap">
         <h3 class="popup-tit">등록된 교육리스트</h3>
     </div>
 
-    <div style="overflow-y: scroll; min-height: 350px;">
         <div class="table-wrap" style="margin-top: 10px;">
             <table class="cst-table list-table">
                 <caption class="hide">목록</caption>
@@ -44,12 +43,11 @@
                 </tbody>
             </table>
         </div>
-    </div>
 
     <div class="btn-wrap text-center">
         <a href="javascript:window.close();" class="btn btn-type1 color-type3">닫기</a>
     </div>
-
+</div>
 @endsection
 
 @section('addScript')

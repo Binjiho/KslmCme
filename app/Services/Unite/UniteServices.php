@@ -40,8 +40,8 @@ class UniteServices extends AppServices
 //            $query->groupBy('esid');
 //        }
 
-        $query = Education::orderByDesc('created_at')->with(['lectures']);
-        $query->where('del', '=', 'N');
+        $query = Education::orderByDesc('created_at');
+        $query->where('del', '=', 'N')->where('hide', '=', 'N');
         if ($request->search_key) {
             $query->where(function ($query) use ($request) {
                 $query->where('title', 'like', "%{$request->search_key}%")     //교육명
@@ -61,7 +61,8 @@ class UniteServices extends AppServices
         $query = Workshop::orderByDesc('created_at')->with(['sub_session']);
 
         if ($request->search_key) {
-            $query->where(['del' => 'N'])
+            $query->where(['del' => 'N']);
+            $query->where(['hide' => 'N'])
                 ->where(function ($query) use ($request) {
                     $query->where('title', 'like', "%{$request->search_key}%");   //행사명
                 })

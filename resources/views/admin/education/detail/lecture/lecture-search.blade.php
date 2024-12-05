@@ -5,7 +5,7 @@
 @endsection
 
 @section('contents')
-
+<div style="padding:25px;">
     <form id="searchF" action="{{ route('education.lecture.upsert',['esid'=>request()->esid ?? 0]) }}" data-case="lecture-search" data-esid="{{ request()->esid ?? 0 }}">
         <fieldset>
             <legend class="hide">검색</legend>
@@ -47,14 +47,14 @@
         </fieldset>
     </form>
 
-    <div style="overflow-y: scroll; min-height: 350px;" id="lecture-result">
+    <div id="lecture-result">
         @include('admin.education.detail.lecture.lecture-result')
     </div>
 
     <div class="btn-wrap text-center">
         <a href="javascript:window.close();" class="btn btn-type1 color-type3">닫기</a>
     </div>
-
+</div>
 @endsection
 
 @section('addScript')

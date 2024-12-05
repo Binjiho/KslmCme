@@ -159,7 +159,7 @@
                                         </div>
                                     </li>
 
-                                    <li class="popupBox" style="display: {{ $popupDisplay }}">
+                                    <li class="popupBox popupDetailBox" style="display: none;">
                                         <div class="form-tit">자세히 보기 LINK</div>
                                         <div class="form-con">
                                             <input type="text" class="form-item w-200p" value="{{ $popup->popup_link ?? '' }}" name="popup_link" id="popup_link" value="{{$key}}" {{ ($popup->popup_detail ?? '') =='Y' ? '':'disabled' }}>
@@ -186,7 +186,7 @@
                                         </div>
                                     </li>
 
-                                    <li class="popupBox" style="display: {{ $popupDisplay }}">
+                                    <li class="popupBox popupContentBox" style="display: {{ $popupDisplay }}">
                                         <div class="form-con">
                                             팝업 내용
                                             <textarea name="popup_contents" id="popup_contents" class="tinymce">{{ $popup->popup_contents ?? '' }}</textarea>
@@ -318,8 +318,8 @@
                     $(".popupBox").show();
                 } else {
                     $(".popupBox").hide();
-                    $(".popupBox").find("input:text").val('');
-                    tinymce.get('popup_contents').getContent('');
+                    // $(".popupBox").find("input:text").val('');
+                    // tinymce.get('popup_contents').getContent('');
                 }
             });
 
@@ -355,13 +355,13 @@
                 }
 
                 if (parseInt($("#width").val()) < popupMinWidth) {
-                    alert(`${popupMinWidth} 이상 입력해주세요.`);
+                    alert(`너비 ${popupMinWidth} 이상 입력해주세요.`);
                     $('#width').focus();
                     return;
                 }
 
                 if (parseInt($("#height").val()) < popupMinHeight) {
-                    alert(`${popupMinHeight} 이상 입력해주세요.`);
+                    alert(`높이 ${popupMinHeight} 이상 입력해주세요.`);
                     $('#height').focus();
                     return;
                 }

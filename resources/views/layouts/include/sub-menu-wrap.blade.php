@@ -15,6 +15,7 @@
     </ul>
 </div>
 
+@if(!empty($menu['low'][$main_menu][$sub_menu]))
 <div class="sub-tab-wrap type1">
     <ul class="sub-tab-menu">
         @foreach($menu['low'][$main_menu][$sub_menu] ?? [] as $lkey => $lval)
@@ -22,3 +23,4 @@
         @endforeach
     </ul>
 </div>
+@endif

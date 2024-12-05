@@ -38,8 +38,8 @@ class DetailLectureServices extends AppServices
         if ($request->type) {
             $query->where('type', 'like', "%{$request->type}%");
         }
-        if ($request->gubun) {
-            $query->where('gubun', 'like', "%{$request->gubun}%");
+        if ($request->field) {
+            $query->where('field', 'like', "%{$request->field}%");
         }
         if ($request->search_type) {
             $query->where($request->search_type, 'like', "%{$request->search_target}%");

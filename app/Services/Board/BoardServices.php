@@ -43,12 +43,8 @@ class BoardServices extends AppServices
 
         $query = Board::where('code', $code)->withCount('files')->orderByDesc('sid');
 
-        if($code == 'faq'){
-
-        }else{
-            if (!isAdmin()) {
-                $query->where('hide', 'N');
-            }
+        if (!isDev()) {
+            $query->where('hide', 'N');
         }
 
         if (!empty($search) && !empty($keyword)) {
@@ -88,6 +84,17 @@ class BoardServices extends AppServices
         return $this->data;
     }
 
+    public function replyService(Request $request)
+    {
+        $b_sid = $request->b_sid ?? null;
+        $sid = $request->sid ?? null;
+        $this->data['board'] = empty($b_sid) ? null : Board::withCount('files')->findOrFail($b_sid);
+        $this->data['popup'] = $this->data['board']->popups ?? null;
+        $this->data['reply'] = empty($sid) ? null : BoardComment::withCount('files')->findOrFail($sid);
+
+        return $this->data;
+    }
+
     public function viewService(Request $request)
     {
         $this->data['board'] = Board::withCount('files')->findOrFail($request->sid);
@@ -108,8 +115,12 @@ class BoardServices extends AppServices
             case 'board-delete':
                 return $this->boardDelete($request);
 
-            case 'board-reply':
-                return $this->boardReply($request);
+            case 'reply-create':
+                return $this->replyCreate($request);
+            case 'reply-update':
+                return $this->replyUpdate($request);
+            case 'reply-delete':
+                return $this->replyDelete($request);
 
             case 'board-hide':
                 return $this->boardHide($request);
@@ -189,20 +200,67 @@ class BoardServices extends AppServices
         }
     }
 
-    private function boardReply(Request $request)
+    private function replyCreate(Request $request)
     {
         $this->transaction();
 
         try {
-            $board = Board::findOrFail($request->sid);
-            $board->contents = $request->contents;
-            $board->update();
+//            $board = Board::findOrFail($request->sid);
+//            $board->contents = $request->contents;
+//            $board->update();
+
+            $reply = new BoardComment();
+            $request->merge(['b_sid' => $request->b_sid]);
+            $reply->setByData($request);
+            $reply->save();
 
             $this->dbCommit('게시글 관리자 답변');
 
             return $this->returnJsonData('alert', [
                 'case' => true,
                 'msg' => '게시글 답변이 완료 되었습니다.',
+                'location' => $this->ajaxActionLocation('replace', $this->listUrl()),
+            ]);
+        } catch (\Exception $e) {
+            return $this->dbRollback($e);
+        }
+    }
+
+    private function replyUpdate(Request $request)
+    {
+        $this->transaction();
+
+        try {
+            $board = BoardComment::findOrFail($request->sid);
+
+            $board->setByData($request);
+            $board->update();
+
+            $this->dbCommit('게시글 답변 수정');
+
+            return $this->returnJsonData('alert', [
+                'case' => true,
+                'msg' => '게시글 답변이 수정 되었습니다.',
+                'location' => $this->ajaxActionLocation('replace', $this->listUrl()),
+            ]);
+        } catch (\Exception $e) {
+            return $this->dbRollback($e);
+        }
+    }
+
+    private function replyDelete(Request $request)
+    {
+        $this->transaction();
+
+        try {
+            $board = BoardComment::findOrFail($request->sid);
+            $board->delete();
+
+            $this->dbCommit('게시글 답변 삭제');
+
+            return $this->returnJsonData('alert', [
+                'case' => true,
+                'msg' => '게시글 답변이 삭제 되었습니다.',
                 'location' => $this->ajaxActionLocation('replace', $this->listUrl()),
             ]);
         } catch (\Exception $e) {

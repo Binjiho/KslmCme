@@ -2,8 +2,8 @@
     const dataUrl = '{{ route('board.data', ['code' => $code]) }}';
     const boardCode = '{{ $code }}';
     const boardConfig = @json($boardConfig);
-    const popupMinWidth = 500;
-    const popupMinHeight = 400;
+    const popupMinWidth = 600;
+    const popupMinHeight = 500;
     const boardForm = '#board-frm';
     const replyForm = '#reply-frm';
 

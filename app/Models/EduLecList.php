@@ -54,4 +54,5 @@ class EduLecList extends Authenticatable
     {
         return $this->belongsTo(Lecture::class, 'lsid');
     }
+    
 }

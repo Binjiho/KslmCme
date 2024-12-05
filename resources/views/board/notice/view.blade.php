@@ -44,7 +44,7 @@
                     </div>
                     @endif
                     <div class="view-contents editor-contents">
-                        {!! $board->content !!}
+                        {!! $board->contents !!}
                     </div>
                     @if($boardConfig['use']['plupload'] && $board->files_count > 0)
                         <div class="view-attach">
@@ -52,7 +52,7 @@
                                 <div class="con">
                                     @foreach($board->files as $file)
                                         <a href="{{ $file->downloadUrl() }}">
-                                            <img src="/assets/image/board/ic_file2.png" alt="">
+{{--                                            <img src="/assets/image/board/ic_file2.png" alt="">--}}
                                             {{ $file->filename }} <!-- (다운 {{ number_format($file->download) }}건) -->
                                         </a>
                                     @endforeach
@@ -96,7 +96,7 @@
 
     @if(isAdmin() || thisPK() == $board->u_sid)
         <script>
-            $(document).on('click', '#bbs-del', function() {
+            $(document).on('click', '.btn-delete', function() {
                 if (confirm('정말로 삭제 하시겠습니까?')) {
                     callAjax(dataUrl, { case: 'board-delete', sid: {{ $board->sid }} });
                 }

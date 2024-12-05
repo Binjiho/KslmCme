@@ -120,7 +120,11 @@ class Quiz extends Authenticatable
         }else{
             $tot_cnt = $this->quiz_view_cnt();
             $target_cnt = $this->quiz_static($item,'cnt');
-            return round( ($target_cnt/$tot_cnt)*100 );
+            if($tot_cnt > 0){
+                return round( ($target_cnt/$tot_cnt)*100 );
+            }else{
+                return 0;
+            }
         }
     }
 }

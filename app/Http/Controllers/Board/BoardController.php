@@ -42,7 +42,7 @@ class BoardController extends Controller
 
     public function reply(Request $request)
     {
-        return view("board.{$this->boardConfig['skin']}.reply", $this->boardServices->upsertService($request));
+        return view("board.{$this->boardConfig['skin']}.reply", $this->boardServices->replyService($request));
     }
 
     public function data(Request $request)

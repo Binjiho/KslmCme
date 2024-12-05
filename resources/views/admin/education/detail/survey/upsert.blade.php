@@ -38,11 +38,11 @@
                 <dd style="display: flex;">
                     <div class="radio-wrap">
                         <div class="radio-group">
-                            <input type="text" name="quiz_item_1" id="quiz_item_1" value="{{ $survey->quiz_item_1 ?? '전혀 아니다' }}" class="form-item" style="width: 80%" {{ $survey->gubun == 'B' ? 'disabled' : '' }}>
-                            <input type="text" name="quiz_item_2" id="quiz_item_2" value="{{ $survey->quiz_item_2 ?? '아니다' }}" class="form-item" style="width: 80%" {{ $survey->gubun == 'B' ? 'disabled' : '' }}>
-                            <input type="text" name="quiz_item_3" id="quiz_item_3" value="{{ $survey->quiz_item_3 ?? '보통이다' }}" class="form-item" style="width: 80%" {{ $survey->gubun == 'B' ? 'disabled' : '' }}>
-                            <input type="text" name="quiz_item_4" id="quiz_item_4" value="{{ $survey->quiz_item_4 ?? '그렇다' }}" class="form-item" style="width: 80%" {{ $survey->gubun == 'B' ? 'disabled' : '' }}>
-                            <input type="text" name="quiz_item_5" id="quiz_item_5" value="{{ $survey->quiz_item_5 ?? '매우 그렇다' }}" class="form-item" style="width: 80%" {{ $survey->gubun == 'B' ? 'disabled' : '' }}>
+                            <input type="text" name="quiz_item_1" id="quiz_item_1" value="{{ $survey->quiz_item_1 ?? '전혀 아니다' }}" class="form-item" style="width: 80%" {{ ($survey->gubun??'') == 'B' ? 'disabled' : '' }}>
+                            <input type="text" name="quiz_item_2" id="quiz_item_2" value="{{ $survey->quiz_item_2 ?? '아니다' }}" class="form-item" style="width: 80%" {{ ($survey->gubun??'') == 'B' ? 'disabled' : '' }}>
+                            <input type="text" name="quiz_item_3" id="quiz_item_3" value="{{ $survey->quiz_item_3 ?? '보통이다' }}" class="form-item" style="width: 80%" {{ ($survey->gubun??'') == 'B' ? 'disabled' : '' }}>
+                            <input type="text" name="quiz_item_4" id="quiz_item_4" value="{{ $survey->quiz_item_4 ?? '그렇다' }}" class="form-item" style="width: 80%" {{ ($survey->gubun??'') == 'B' ? 'disabled' : '' }}>
+                            <input type="text" name="quiz_item_5" id="quiz_item_5" value="{{ $survey->quiz_item_5 ?? '매우 그렇다' }}" class="form-item" style="width: 80%" {{ ($survey->gubun??'') == 'B' ? 'disabled' : '' }}>
                         </div>
                     </div>
                 </dd>

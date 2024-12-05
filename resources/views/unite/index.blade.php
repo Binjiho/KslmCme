@@ -38,7 +38,7 @@
 
             <div class="sub-tit-wrap">
                 <h3 class="sub-tit">수강/열람신청 ({{ $education_cnt ?? 0 }}건)</h3>
-                <a href="{{ route('education') }}" class="btn btn-more">더보기</a>
+                <a href="{{ route('education',['search_key'=>request()->search_key ?? '']) }}" class="btn btn-more">더보기</a>
             </div>
             <div class="edu-board-list">
                 @forelse($education_list as $row)
@@ -73,7 +73,7 @@
 
             <div class="sub-tit-wrap n-bd">
                 <h3 class="sub-tit">학술자료실 ({{ $workshop_cnt ?? 0 }}건)</h3>
-                <a href="{{ route('workshop') }}" class="btn btn-more">더보기</a>
+                <a href="{{ route('workshop',['search_key'=>request()->search_key ?? '']) }}" class="btn btn-more">더보기</a>
             </div>
 
             <ul class="board-list">
@@ -114,7 +114,7 @@
                             <div class="file">
                                 @if(!empty($val->video_link))
                                     @if(thisLevel()=='M' || in_array(thisLevel(),$val->workshop->limit_level) !== false)
-                                        <a href="{{ route('workshop.popup',['sid'=>$val->sid,'wsid'=>request()->wsid]) }}" class="btn btn-small btn-type1 color-type20 call-popup" data-popup_name="subsession-popup" data-width="850" data-height="900">
+                                        <a href="{{ route('workshop.popup',['sid'=>$val->sid,'wsid'=>$val->wsid]) }}" class="btn btn-small btn-type1 color-type20 call-popup" data-popup_name="subsession-popup" data-width="850" data-height="900">
                                             <img src="/assets/image/sub/ic_video.png" alt="">
                                         </a>
                                     @else

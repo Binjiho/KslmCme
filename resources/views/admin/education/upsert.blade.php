@@ -2,231 +2,251 @@
 
 @section('addStyle')
     <link type="text/css" rel="stylesheet" href="{{ asset('plugins/plupload/2.3.6/jquery.plupload.queue/css/jquery.plupload.queue.css') }}" />
+
+    <style>
+        input:disabled {
+            background-color: #f0f0f0; /* 회색 배경 */
+            color: #ccc; /* 회색 텍스트 */
+            border: 1px solid #ddd; /* 연한 회색 테두리 */
+        }
+    </style>
 @endsection
 
 @section('contents')
+<div style="padding:25px;">
     <div class="sub-tit-wrap">
         <h3 class="sub-tit">교육 {{ empty($education->sid) ? '등록' : '수정' }}</h3>
     </div>
+	
+		<form id="mail-frm" method="post" action="{{ route('education.data') }}" data-sid="{{ $education->sid ?? 0 }}" data-case="education-{{ empty($education->sid) ? 'create' : 'update' }}" data-send="N">
+			<div class="write-wrap">
+				<dl>
+					<dt style="text-align: center;"><b style="color: #e95d5d;">*</b> 노출여부</dt>
+					<dd>
+						<div class="radio-wrap">
+							@foreach($educationConfig['hide'] as $key => $val)
+								<div class="radio-group">
+									<input type="radio" name="hide" id="hide_{{ $key }}" value="{{ $key }}" {{ ($education->hide ?? '') == $key ? 'checked' : '' }}>
+									<label for="hide_{{ $key }}">{{ $val }}</label>
+								</div>
+							@endforeach
+						</div>
+					</dd>
+				</dl>
+				<dl>
+					<dt style="text-align: center;"><b style="color: #e95d5d;">*</b> 교육 구분</dt>
+					<dd>
+						<div class="radio-wrap">
+							@foreach($educationConfig['category'] as $key => $val)
+								<div class="radio-group">
+									<input type="radio" name="category" id="category_{{ $key }}" value="{{ $key }}" {{ ($education->category ?? '') == $key ? 'checked' : '' }}>
+									<label for="category_{{ $key }}">{{ $val }}</label>
+								</div>
+							@endforeach
+						</div>
+					</dd>
+				</dl>
+				<dl class="gubun_dl" style="{{ ($education->category ?? '') == 'A' ? '' : 'display:none;' }}">
+					<dt style="text-align: center;"><b style="color: #e95d5d;">*</b> 학술대회 구분</dt>
+					<dd>
+						<div class="radio-wrap">
+							@foreach($educationConfig['gubun'] as $key => $val)
+								<div class="radio-group">
+									<input type="radio" name="gubun" id="gubun_{{ $key }}" value="{{ $key }}" {{ ($education->gubun ?? '') == $key ? 'checked' : '' }}>
+									<label for="gubun_{{ $key }}">{{ $val }}</label>
+								</div>
+							@endforeach
+						</div>
+					</dd>
+				</dl>
+				<dl>
+					<dt style="text-align: center;"><b style="color: #e95d5d;">*</b> 교육명</dt>
+					<dd>
+						<input type="text" name="title" id="title" value="{{ $education->title ?? '' }}" class="form-item">
+					</dd>
+				</dl>
+				<dl>
+					<dt style="text-align: center;">교육소개</dt>
+					<dd>
+						<textarea name="contents" id="contents" class="tinymce">{{ $education->contents ?? '' }}</textarea>
+					</dd>
+				</dl>
 
-    <form id="mail-frm" method="post" action="{{ route('education.data') }}" data-sid="{{ $education->sid ?? 0 }}" data-case="education-{{ empty($education->sid) ? 'create' : 'update' }}" data-send="N">
-        <div class="write-wrap">
-            <dl>
-                <dt style="text-align: center;"><b style="color: #e95d5d;">*</b> 노출여부</dt>
-                <dd>
-                    <div class="radio-wrap">
-                        @foreach($educationConfig['hide'] as $key => $val)
-                            <div class="radio-group">
-                                <input type="radio" name="hide" id="hide_{{ $key }}" value="{{ $key }}" {{ ($education->hide ?? '') == $key ? 'checked' : '' }}>
-                                <label for="hide_{{ $key }}">{{ $val }}</label>
-                            </div>
-                        @endforeach
-                    </div>
-                </dd>
-            </dl>
-            <dl>
-                <dt style="text-align: center;"><b style="color: #e95d5d;">*</b> 교육 구분</dt>
-                <dd>
-                    <div class="radio-wrap">
-                        @foreach($educationConfig['category'] as $key => $val)
-                            <div class="radio-group">
-                                <input type="radio" name="category" id="category_{{ $key }}" value="{{ $key }}" {{ ($education->category ?? '') == $key ? 'checked' : '' }}>
-                                <label for="category_{{ $key }}">{{ $val }}</label>
-                            </div>
-                        @endforeach
-                    </div>
-                </dd>
-            </dl>
-            <dl class="gubun_dl" style="{{ ($education->category ?? '') == 'A' ? '' : 'display:none;' }}">
-                <dt style="text-align: center;"><b style="color: #e95d5d;">*</b> 학술대회 구분</dt>
-                <dd>
-                    <div class="radio-wrap">
-                        @foreach($educationConfig['gubun'] as $key => $val)
-                            <div class="radio-group">
-                                <input type="radio" name="gubun" id="gubun_{{ $key }}" value="{{ $key }}" {{ ($education->gubun ?? '') == $key ? 'checked' : '' }}>
-                                <label for="gubun_{{ $key }}">{{ $val }}</label>
-                            </div>
-                        @endforeach
-                    </div>
-                </dd>
-            </dl>
-            <dl>
-                <dt style="text-align: center;"><b style="color: #e95d5d;">*</b> 교육명</dt>
-                <dd>
-                    <input type="text" name="title" id="title" value="{{ $education->title ?? '' }}" class="form-item">
-                </dd>
-            </dl>
-            <dl>
-                <dt style="text-align: center;">교육소개</dt>
-                <dd>
-                    <textarea name="contents" id="contents" class="tinymce">{{ $education->contents ?? '' }}</textarea>
-                </dd>
-            </dl>
+				<dl>
+					<dt style="text-align: center;"><b style="color: #e95d5d;">*</b> 수강조건</dt>
+					<dd>
+						<div class="radio-wrap">
+							@foreach($educationConfig['condition_yn'] as $key => $val)
+								<div class="radio-group">
+									<input type="radio" name="condition_yn" id="condition_yn_{{ $key }}" value="{{ $key }}" {{ ($education->condition_yn ?? '') == $key ? 'checked' : '' }}>
+									<label for="condition_yn_{{ $key }}">{{ $val }}</label>
+								</div>
+							@endforeach
 
-            <dl>
-                <dt style="text-align: center;"><b style="color: #e95d5d;">*</b> 수강조건</dt>
-                <dd>
-                    <div class="radio-wrap">
-                        @foreach($educationConfig['condition_yn'] as $key => $val)
-                            <div class="radio-group">
-                                <input type="radio" name="condition_yn" id="condition_yn_{{ $key }}" value="{{ $key }}" {{ ($education->condition_yn ?? '') == $key ? 'checked' : '' }}>
-                                <label for="condition_yn_{{ $key }}">{{ $val }}</label>
-                            </div>
-                        @endforeach
+							<select name="pre_esid" style="width: 33%;" {{ ($education->condition_yn ?? '') == 'N' ? 'disabled' : ''}}>
+								<option value="">선행 교육 선택</option>
+								@foreach($pre_edu_list as $val)
+									<option value="{{ $val->sid }}" {{ ($education->pre_esid ?? '') == $val->sid ? 'selected' : '' }}>{{ $val->title }}</option>
+								@endforeach
+							</select>
+						</div>
+					</dd>
+				</dl>
+				<dl>
+					<dt style="text-align: center;"><b style="color: #e95d5d;">*</b> 퀴즈</dt>
+					<dd>
+						<div class="radio-wrap">
+							@foreach($educationConfig['quiz_yn'] as $key => $val)
+								<div class="radio-group">
+									<input type="radio" name="quiz_yn" id="quiz_yn_{{ $key }}" value="{{ $key }}" {{ ($education->quiz_yn ?? '') == $key ? 'checked' : '' }}>
+									<label for="quiz_yn_{{ $key }}">{{ $val }}</label>
+								</div>
+							@endforeach
 
-                        <select name="pre_esid" style="width: 33%;" {{ ($education->condition_yn ?? '') == 'N' ? 'disabled' : ''}}>
-                            <option value="">선행 교육 선택</option>
-                            @foreach($pre_edu_list as $val)
-                                <option value="{{ $val->sid }}" {{ ($education->pre_esid ?? '') == $val->sid ? 'selected' : '' }}>{{ $val->title }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </dd>
-            </dl>
-            <dl>
-                <dt style="text-align: center;"><b style="color: #e95d5d;">*</b> 퀴즈</dt>
-                <dd>
-                    <div class="radio-wrap">
-                        @foreach($educationConfig['quiz_yn'] as $key => $val)
-                            <div class="radio-group">
-                                <input type="radio" name="quiz_yn" id="quiz_yn_{{ $key }}" value="{{ $key }}" {{ ($education->quiz_yn ?? '') == $key ? 'checked' : '' }}>
-                                <label for="quiz_yn_{{ $key }}">{{ $val }}</label>
-                            </div>
-                        @endforeach
+							퀴즈 사용 개수
+							<select name="quiz_cnt" style="width: 20%;" {{ ($education->quiz_yn ?? '') == 'N' ? 'disabled' : ''}}>
+								<option value="">선택</option>
+								@for($i=1; $i<=$educationConfig['quiz_cnt']; $i++)
+									<option value="{{ $i }}" {{ ($education->quiz_cnt ?? '') == $i ? 'selected' : '' }}>{{ $i }}개</option>
+								@endfor
+							</select>
 
-                        퀴즈 사용 개수
-                        <select name="quiz_cnt" style="width: 20%;" {{ ($education->quiz_yn ?? '') == 'N' ? 'disabled' : ''}}>
-                            <option value="">선택</option>
-                            @for($i=1; $i<=$educationConfig['quiz_cnt']; $i++)
-                                <option value="{{ $i }}" {{ ($education->quiz_cnt ?? '') == $i ? 'selected' : '' }}>{{ $i }}개</option>
-                            @endfor
-                        </select>
+							/ 합격 개수
+							<select name="pass_cnt" style="width: 20%;" {{ ($education->quiz_yn ?? '') == 'N' ? 'disabled' : ''}}>
+								<option value="">선택</option>
+								@for($i=1; $i<=$educationConfig['pass_cnt']; $i++)
+									<option value="{{ $i }}" {{ ($education->pass_cnt ?? '') == $i ? 'selected' : '' }}>{{ $i }}개</option>
+								@endfor
+							</select>
+						</div>
+					</dd>
+				</dl>
+				<dl>
+					<dt style="text-align: center;"><b style="color: #e95d5d;">*</b> 설문</dt>
+					<dd>
+						<div class="radio-wrap">
+							@foreach($educationConfig['survey_yn'] as $key => $val)
+								<div class="radio-group">
+									<input type="radio" name="survey_yn" id="survey_yn_{{ $key }}" value="{{ $key }}" {{ ($education->survey_yn ?? '') == $key ? 'checked' : '' }}>
+									<label for="survey_yn_{{ $key }}">{{ $val }}</label>
+								</div>
+							@endforeach
+						</div>
+					</dd>
+				</dl>
 
-                        / 합격 개수
-                        <select name="pass_cnt" style="width: 20%;" {{ ($education->quiz_yn ?? '') == 'N' ? 'disabled' : ''}}>
-                            <option value="">선택</option>
-                            @for($i=1; $i<=$educationConfig['pass_cnt']; $i++)
-                                <option value="{{ $i }}" {{ ($education->pass_cnt ?? '') == $i ? 'selected' : '' }}>{{ $i }}개</option>
-                            @endfor
-                        </select>
-                    </div>
-                </dd>
-            </dl>
-            <dl>
-                <dt style="text-align: center;"><b style="color: #e95d5d;">*</b> 설문</dt>
-                <dd>
-                    <div class="radio-wrap">
-                        @foreach($educationConfig['survey_yn'] as $key => $val)
-                            <div class="radio-group">
-                                <input type="radio" name="survey_yn" id="survey_yn_{{ $key }}" value="{{ $key }}" {{ ($education->survey_yn ?? '') == $key ? 'checked' : '' }}>
-                                <label for="survey_yn_{{ $key }}">{{ $val }}</label>
-                            </div>
-                        @endforeach
-                    </div>
-                </dd>
-            </dl>
+				<dl>
+					<dt style="text-align: center;"> 교육자료</dt>
+					<dd>
+						<div class="filebox">
+							<input class="upload-name form-item" id="thumbnail_text" placeholder="파일 업로드" readonly="readonly">
+							<label for="thumbnail">파일 업로드</label>
+							<input type="file" id="thumbnail" name="thumbnail" class="file-upload" accept="image/jpg, image/jpeg, image/png" data-accept="jpeg|jpg|png" onchange="fileCheck(this,$('#thumbnail_text'))">
 
-            <dl>
-                <dt style="text-align: center;"> 교육자료</dt>
-                <dd>
-                    <div class="filebox">
-                        <input class="upload-name form-item" id="thumbnail_text" placeholder="파일 업로드" readonly="readonly">
-                        <label for="thumbnail">파일 업로드</label>
-                        <input type="file" id="thumbnail" name="thumbnail" class="file-upload" accept="image/jpg, image/jpeg, image/png" data-accept="jpeg|jpg|png" onchange="fileCheck(this,$('#thumbnail_text'))">
+							@if(!empty($education->sid) && $education->realfile)
+								<a href="{{ $education->downloadUrl() }}">{{ $education->filename }} (다운)</a>
 
-                        @if(!empty($education->sid) && $education->realfile)
-                            <a href="{{ $education->downloadUrl() }}">{{ $education->filename }} (다운)</a>
+								<a href="javascript:void(0);" class="file_del" data-type="thumb" data-path="{{ $education->realfile }}"><img src="{{ asset('assets/image/admin/ic_del.png') }}" alt="삭제"></a>
+							@endif
+						</div>
+					</dd>
+				</dl>
 
-                            <a href="javascript:void(0);" class="file_del" data-type="thumb" data-path="{{ $education->realfile }}"><img src="{{ asset('assets/image/admin/ic_del.png') }}" alt="삭제"></a>
-                        @endif
-                    </div>
-                </dd>
-            </dl>
+				<dl >
+					<dt style="text-align: center;"><b style="color: #e95d5d;">*</b> 이수증 사용여부</dt>
+					<dd>
+						<div class="radio-wrap">
+							@foreach($educationConfig['certi_yn'] as $key => $val)
+								<div class="radio-group">
+									<input type="radio" name="certi_yn" id="certi_yn_{{ $key }}" value="{{ $key }}" {{ ($education->certi_yn ?? '') == $key ? 'checked' : '' }}>
+									<label for="certi_yn_{{ $key }}">{{ $val }}</label>
+								</div>
+							@endforeach
+						</div>
+					</dd>
+				</dl>
+				<dl class="certi_code_dl" style="{{ ($education->certi_yn ?? '') == 'Y' ? '' : 'display:none;' }}">
+					<dt style="text-align: center;"> 이수증 코드값</dt>
+					<dd>
+						KSLM - <input type="text" name="certi_code" id="certi_code" value="{{ $education->certi_code ?? '' }}" class="form-item" style="width: 50%" noneKo><b style="color: #e95d5d;">영문3 + 숫자3로 입력하세요</b>
+					</dd>
+				</dl>
+				<dl>
+					<dt style="text-align: center;"><b style="color: #e95d5d;">*</b> 신청기간</dt>
+					<dd style="display: flex;">
+						<input type="text" name="regist_sdate" id="regist_sdate" value="{{ !empty($education->regist_sdate) ? (isValidTimestamp($education->regist_sdate) ? $education->regist_sdate : '') : '' }}" class="form-item" datepicker readonly> -
+						<input type="text" name="regist_edate" id="regist_edate" value="{{ !empty($education->regist_edate) ? (isValidTimestamp($education->regist_edate) ? $education->regist_edate : '') : '' }}" class="form-item" datepicker readonly {{ ( $education->regist_limit_yn ?? '') == 'N' ? 'disabled':'' }}>
+						<div class="checkbox-wrap">
+							<div class="checkbox-group">
+								<input type="checkbox" name="regist_limit_yn" id="regist_limit_yn" value="N" {{ ( $education->regist_limit_yn ?? '') == 'N' ? 'checked':'' }} >
+								<label for="regist_limit_yn">기한없음</label>
+							<div>
+						</div>
+					</dd>
+				</dl>
+				<dl>
+					<dt style="text-align: center;"><b style="color: #e95d5d;">*</b> 수강기간</dt>
+					<dd style="display: flex;">
+						<input type="text" name="edu_sdate" id="edu_sdate" value="{{ !empty($education->edu_sdate) ? (isValidTimestamp($education->edu_sdate) ? $education->edu_sdate : '') : '' }}" class="form-item datetime" datepicker readonly> -
+						<input type="text" name="edu_edate" id="edu_edate" value="{{ !empty($education->edu_edate) ? (isValidTimestamp($education->edu_edate) ? $education->edu_edate : '') : '' }}" class="form-item datetime" datepicker readonly {{ ( $education->edu_limit_yn ?? '') == 'N' ? 'disabled':'' }}>
+						<div class="checkbox-wrap">
+							<div class="checkbox-group">
+								<input type="checkbox" name="edu_limit_yn" id="edu_limit_yn" value="N" {{ ( $education->edu_limit_yn ?? '') == 'N' ? 'checked':'' }} >
+								<label for="edu_limit_yn">기한없음</label>
+							<div>
+						</div>
+					</dd>
+				</dl>
+				<dl>
+					<dt style="text-align: center;"><b style="color: #e95d5d;">*</b> 금액</dt>
+					<dd style="display: flex;">
+						<div class="radio-wrap">
+							@foreach($educationConfig['free_yn'] as $key => $val)
+								<div class="radio-group">
+									<input type="radio" name="free_yn" id="free_yn_{{ $key }}" value="{{ $key }}" {{ ($education->free_yn ?? '') == $key ? 'checked' : '' }}>
+									<label for="free_yn_{{ $key }}">{{ $val }}</label>
+								</div>
+							@endforeach
+								<input type="text" name="cost" id="cost" value="{{ $education->cost ?? '' }}" class="form-item" style="width: 50%" onlyNumber>
+						</div>
+					</dd>
+				</dl>
 
-            <dl>
-                <dt style="text-align: center;"><b style="color: #e95d5d;">*</b> 이수증 사용여부</dt>
-                <dd>
-                    <div class="radio-wrap">
-                        @foreach($educationConfig['certi_yn'] as $key => $val)
-                            <div class="radio-group">
-                                <input type="radio" name="certi_yn" id="certi_yn_{{ $key }}" value="{{ $key }}" {{ ($education->certi_yn ?? '') == $key ? 'checked' : '' }}>
-                                <label for="certi_yn_{{ $key }}">{{ $val }}</label>
-                            </div>
-                        @endforeach
-                    </div>
-                </dd>
-            </dl>
-            <dl>
-                <dt style="text-align: center;"> 이수증 코드값</dt>
-                <dd>
-                    KSLM - <input type="text" name="certi_code" id="certi_code" value="{{ $education->certi_code ?? '' }}" class="form-item" style="width: 50%" noneKo><b style="color: #e95d5d;">영문3 + 숫자3로 입력하세요</b>
-                </dd>
-            </dl>
-            <dl>
-                <dt style="text-align: center;"><b style="color: #e95d5d;">*</b> 신청기간</dt>
-                <dd style="display: flex;">
-                    <input type="text" name="regist_sdate" id="regist_sdate" value="{{ $education->regist_sdate ?? '' }}" class="form-item" datepicker readonly> - <input type="text" name="regist_edate" id="regist_edate" value="{{ $education->regist_edate ?? '' }}" class="form-item" datepicker readonly>
-                    <input type="checkbox" name="regist_limit_yn" id="regist_limit_yn" value="N" {{ ( $education->regist_limit_yn ?? '') == 'N' ? 'checked':'' }} >
-                    <label for="regist_limit_yn">기한없음</label>
-                </dd>
-            </dl>
-            <dl>
-                <dt style="text-align: center;"><b style="color: #e95d5d;">*</b> 수강기간</dt>
-                <dd style="display: flex;">
-                    <input type="text" name="edu_sdate" id="edu_sdate" value="{{ $education->edu_sdate ?? '' }}" class="form-item" datepicker readonly> - <input type="text" name="edu_edate" id="edu_edate" value="{{ $education->edu_edate ?? '' }}" class="form-item" datepicker readonly>
-                    <input type="checkbox" name="edu_limit_yn" id="edu_limit_yn" value="N" {{ ( $education->edu_limit_yn ?? '') == 'N' ? 'checked':'' }} >
-                    <label for="edu_limit_yn">기한없음</label>
-                </dd>
-            </dl>
-            <dl>
-                <dt style="text-align: center;"><b style="color: #e95d5d;">*</b> 금액</dt>
-                <dd style="display: flex;">
-                    <div class="radio-wrap">
-                        @foreach($educationConfig['free_yn'] as $key => $val)
-                            <div class="radio-group">
-                                <input type="radio" name="free_yn" id="free_yn_{{ $key }}" value="{{ $key }}" {{ ($education->free_yn ?? '') == $key ? 'checked' : '' }}>
-                                <label for="free_yn_{{ $key }}">{{ $val }}</label>
-                            </div>
-                        @endforeach
-                            <input type="text" name="cost" id="cost" value="{{ $education->cost ?? '' }}" class="form-item" style="width: 50%" onlyNumber>
-                    </div>
-                </dd>
-            </dl>
+				<dl class="method_dl" style="{{ ($education->free_yn ?? '') == 'Y' ? 'display:none;' : '' }}">
+					<dt style="text-align: center;"> 결제방법</dt>
+					<dd style="display: flex;">
+						<div class="radio-wrap">
+							@foreach($educationConfig['pay_method'] as $key => $val)
+								<div class="radio-group">
+									<input type="radio" name="pay_method" id="pay_method_{{ $key }}" value="{{ $key }}" {{ ($education->pay_method ?? '') == $key ? 'checked' : '' }}>
+									<label for="pay_method_{{ $key }}">{{ $val }}</label>
+								</div>
+							@endforeach
+						</div>
+					</dd>
+				</dl>
+				<dl class="bank_dl" style="display: flex; {{ ($education->free_yn ?? '') == 'N' && ($education->pay_method ?? '') == 'B' ? '' : 'display:none;' }}">
+					<dt style="text-align: center;"> 은행정보</dt>
+					<dd>
+						<input type="text" style="width: 30%;" name="bank_name" id="bank_name" value="{{ $education->bank_name ?? '' }}" class="form-item" placeholder="은행명" >
+						<input type="text" style="width: 30%;" name="account_name" id="account_name" value="{{ $education->account_name ?? '' }}" class="form-item" placeholder="예금주명" >
+						<input type="text" style="width: 30%;" name="account_num" id="account_num" value="{{ $education->account_num ?? '' }}" class="form-item" placeholder="계좌번호" >
+					</dd>
+				</dl>
+				<dl class="info_dl" style="{{ ($education->free_yn ?? '') == 'Y' ? 'display:none;' : '' }}">
+					<dt style="text-align: center;"> 결제정보</dt>
+					<dd>
+						<input type="text" name="pay_info" id="pay_info" value="{{ $education->pay_info ?? '' }}" class="form-item" placeholder="결제 관련 마감일 정보 등을 입력해주세요." >
+					</dd>
+				</dl>
+			</div>
 
-            <dl>
-                <dt style="text-align: center;"> 결제방법</dt>
-                <dd style="display: flex;">
-                    <div class="radio-wrap">
-                        @foreach($educationConfig['pay_method'] as $key => $val)
-                            <div class="radio-group">
-                                <input type="radio" name="pay_method" id="pay_method_{{ $key }}" value="{{ $key }}" {{ ($education->pay_method ?? '') == $key ? 'checked' : '' }}>
-                                <label for="pay_method_{{ $key }}">{{ $val }}</label>
-                            </div>
-                        @endforeach
-                    </div>
-                </dd>
-            </dl>
-            <dl style="display: flex">
-                <dt style="text-align: center;"> 은행정보</dt>
-                <dd>
-                    <input type="text" style="width: 30%;" name="bank_name" id="bank_name" value="{{ $education->bank_name ?? '' }}" class="form-item" placeholder="은행명" >
-                    <input type="text" style="width: 30%;" name="account_name" id="account_name" value="{{ $education->account_name ?? '' }}" class="form-item" placeholder="예금주명" >
-                    <input type="text" style="width: 30%;" name="account_num" id="account_num" value="{{ $education->account_num ?? '' }}" class="form-item" placeholder="계좌번호" >
-                </dd>
-            </dl>
-            <dl>
-                <dt style="text-align: center;"> 결제정보</dt>
-                <dd>
-                    <input type="text" name="pay_info" id="pay_info" value="{{ $education->pay_info ?? '' }}" class="form-item" placeholder="결제 관련 마감일 정보 등을 입력해주세요." >
-                </dd>
-            </dl>
-        </div>
-
-        <div class="btn-wrap text-center">
-            <button type="submit" class="btn btn-type1 color-type20" id="submit">{{ empty($education->sid) ? '등록' : '수정' }}</button>
-            <a href="javascript:window.close();" class="btn btn-type1 color-type3">취소</a>
-        </div>
-    </form>
+			<div class="btn-wrap text-center">
+				<button type="submit" class="btn btn-type1 color-type20" id="submit">{{ empty($education->sid) ? '등록' : '수정' }}</button>
+				<a href="javascript:window.close();" class="btn btn-type1 color-type3">취소</a>
+			</div>
+		</form>
+</div>
 @endsection
 
 @section('addScript')
@@ -253,6 +273,40 @@
             }else{
                 $(".gubun_dl").hide();
                 $("input[name='gubun']").prop('checked',false);
+            }
+        });
+
+        $(document).on('click', 'input[name=certi_yn]', function() {
+            if ( $(this).val() == 'Y' ){
+                $(".certi_code_dl").show();
+            }else{
+                $(".certi_code_dl").hide();
+                $("input[name='certi_code']").val('');
+            }
+        });
+
+        $(document).on('click', 'input[name=free_yn]', function() {
+            if ( $(this).val() == 'Y' ){
+                $(".method_dl").hide();
+                $(".bank_dl").hide();
+                $(".info_dl").hide();
+                $("input[name='pay_method']").prop('checked',false);
+                $("input[name='bank_name']").val('');
+                $("input[name='account_name']").val('');
+                $("input[name='account_num']").val('');
+                $("input[name='pay_info']").val('');
+            }else{
+                $(".method_dl").show();
+                // $(".bank_dl").show();
+                $(".info_dl").show();
+            }
+        });
+
+        $(document).on('click', 'input[name=pay_method]', function() {
+            if ( $(this).val() == 'B' ){
+                $(".bank_dl").show();
+            }else{
+                $(".bank_dl").hide();
             }
         });
 
@@ -395,7 +449,7 @@
                 pay_method: {
                     checkEmpty: {
                         depends: function (element) {
-                            return $("input[name='certi_yn']:checked").val() === 'Y' || $("input[name='free_yn']:checked").val() === 'N';
+                            return $("input[name='free_yn']:checked").val() === 'N';
                         }
                     },
                 },

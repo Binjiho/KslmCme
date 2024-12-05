@@ -28,7 +28,7 @@ Route::controller(\App\Http\Controllers\Board\BoardController::class)->middlewar
     Route::get('/', 'index')->name('board');
     Route::get('view/{sid}', 'view')->name('board.view');
     Route::get('upsert/{sid?}', 'upsert')->name('board.upsert');
-    Route::get('reply/{sid?}', 'reply')->name('board.reply');
+    Route::get('reply/{b_sid?}', 'reply')->name('board.reply');
     Route::post('data', 'data')->name('board.data');
 });
 

@@ -71,7 +71,7 @@
             </form>
 
             <div class="text-right">
-                <a href="{{ route('lecture.upsert') }}" class="btn btn-small btn-type1 color-type20 call-popup" data-popup_name="lecture-upsert" data-width="850" data-height="900">
+                <a href="{{ route('lecture.upsert') }}" class="btn btn-type1 color-type20 call-popup" data-popup_name="lecture-upsert" data-width="850" data-height="900">
                     강의 등록
                 </a>
             </div>
@@ -88,10 +88,10 @@
                         <col style="width: 15%;">
 
                         <col style="width: 8%;">
-                        <col style="width: 10%;">
-                        <col style="width: 10%;">
-                        <col style="width: 10%;">
                         <col style="width: 8%;">
+                        <col style="width: 7%;">
+                        <col style="width: 8%;">
+                        <col style="width: 5%;">
                     </colgroup>
 
                     <thead>
@@ -100,10 +100,10 @@
                         <th scope="col">강의구분</th>
                         <th scope="col">강의분야</th>
                         <th scope="col">강의명</th>
-                        <th scope="col">강사명</th>
+                        <th scope="col">강사명<br>(강사소속)</th>
 
-                        <th scope="col">강사소속</th>
-                        <th scope="col">강의정보<br>(시간/파일)</th>
+                        <th scope="col">강의 시간</th>
+                        <th scope="col">강의 파일</th>
                         <th scope="col">등록교육</th>
                         <th scope="col">등록일</th>
                         <th scope="col">관리</th>
@@ -125,23 +125,31 @@
                                         }
                                     }
                                 @endphp
-                                {{ implode(',',$field_arr) }}
+                                {{ implode(', ',$field_arr) }}
                             </td>
-                            <td>{{ $row->title ?? '' }}</td>
-                            <td>{{ $row->name_kr ?? '' }}</td>
-                            <td>{{ $row->sosok_kr ?? '' }}</td>
+                            <td class="text-left">{{ $row->title ?? '' }}</td>
+                            <td>{{ $row->name_kr ?? '' }}<br>({{ $row->sosok_kr ?? '' }})</td>
+						 
+							<td>
+								@if(($row->type ?? '')=='V')
+                                {{ $row->lecture_time ?? '' }}
+								@else
+								-
+								@endif 
+							</td>
+							<td>
+								@if(($row->type ?? '')!='V')
+                                <a href="{{ $row->downloadUrl() }}" class="btn btn-small btn-type1 color-type15" >
+                                   자료 다운로드
+                                </a>
+								@else
+								-
+								@endif 
+							</td>
+                                                   
 
                             <td>
-                                @if(($row->type ?? '')=='V')
-                                {{ $row->lecture_time ?? '' }}
-                                @else
-                                    <a href="{{ $row->downloadUrl() }}" class="btn btn-small btn-type1 color-type20" >
-                                    자료 다운로드
-                                </a>
-                                @endif
-                            </td>
-                            <td>
-                                <a href="{{ route('lecture.view', ['lsid' => $row->sid]) }}" class="btn btn-small btn-type1 color-type20 call-popup" data-popup_name="lecture-view" data-width="850" data-height="600">
+                                <a href="{{ route('lecture.view', ['lsid' => $row->sid]) }}" class="btn btn-small btn-type1 color-type13 call-popup" data-popup_name="lecture-view" data-width="850" data-height="600">
                                     확인
                                 </a>
                             </td>

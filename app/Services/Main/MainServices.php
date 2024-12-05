@@ -6,6 +6,7 @@ use App\Models\Workshop;
 use App\Models\Education;
 use App\Models\EduLecList;
 use App\Models\Board;
+use App\Models\BoardPopup;
 use App\Services\AppServices;
 use Illuminate\Http\Request;
 
@@ -28,23 +29,23 @@ class MainServices extends AppServices
             }
         }
 
-        $this->data['workshop_list_a'] = Workshop::where(['del'=>'N', 'main_yn'=>'Y', 'category'=>'A'])
+        $this->data['workshop_list_a'] = Workshop::where(['del'=>'N','hide'=>'N', 'main_yn'=>'Y', 'category'=>'A'])
             ->orderBy('created_at', 'desc')
             ->take(6)
             ->get();
-        $this->data['workshop_list_b'] = Workshop::where(['del'=>'N', 'main_yn'=>'Y', 'category'=>'B'])
+        $this->data['workshop_list_b'] = Workshop::where(['del'=>'N','hide'=>'N', 'main_yn'=>'Y', 'category'=>'B'])
             ->orderBy('created_at', 'desc')
             ->take(6)
             ->get();
-        $this->data['workshop_list_z'] = Workshop::where(['del'=>'N', 'main_yn'=>'Y', 'category'=>'Z'])
+        $this->data['workshop_list_z'] = Workshop::where(['del'=>'N','hide'=>'N', 'main_yn'=>'Y', 'category'=>'Z'])
             ->orderBy('created_at', 'desc')
             ->take(6)
             ->get();
-        $this->data['education_list'] = Education::where(['del'=>'N'])
+        $this->data['education_list'] = Education::where(['del'=>'N','hide'=>'N'])
             ->orderBy('created_at', 'desc')
             ->take(6)
             ->get();
-        $this->data['notice_list'] = Board::where(['code'=>'notice', 'main'=>'Y'])
+        $this->data['notice_list'] = Board::where(['code'=>'notice','hide'=>'N', 'main'=>'Y'])
             ->orderBy('created_at', 'desc')
             ->take(6)
             ->get();
@@ -112,11 +113,29 @@ class MainServices extends AppServices
         return $this->data;
     }
 
+    public function popService(Request $request)
+    {
+        $this->data['board'] = Board::FindOrFail($request->bsid);
+        $this->data['board']->files_count = count($this->data['board']->files);
+        $this->data['popup'] = BoardPopup::where(['b_sid'=>$request->bsid])->first();
+        return $this->data;
+    }
+
     public function dataAction(Request $request)
     {
         switch ($request->case) {
+            case 'main-popup':
+                return $this->mainPopupServices($request);
             default:
                 return notFoundRedirect();
         }
+    }
+
+    private function mainPopupServices(Request $request)
+    {
+        $this->data['popup'] = (object)$request->all();
+        return $this->returnJsonData('append', [
+            $this->ajaxActionHtml('body', view("common.popup.template".$request->popup_skin ?? 0, $this->data)->render())
+        ]);
     }
 }

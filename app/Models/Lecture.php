@@ -125,9 +125,18 @@ class Lecture extends Authenticatable
         return $percent;
     }
 
-    public function lec_view()
+    public function lec_view($ssid)
     {
-        return LectureView::where(['lsid'=>$this->sid, 'user_sid'=>thisPK(), 'del'=>'N'])->first();
+        return LectureView::where(['ssid'=>$ssid,'lsid'=>$this->sid, 'user_sid'=>thisPK(), 'del'=>'N'])->first();
     }
 
+    public function education()
+    {
+        return $this->belongsTo(Education::class, 'esid', 'sid');  // 'esid'는 EduLecList에서 'Education'의 외래 키
+    }
+
+    public function isRegisted($esid)
+    {
+        return EduLecList::where(['del'=>'N', 'esid'=>$esid, 'lsid'=>$this->sid])->first();
+    }
 }

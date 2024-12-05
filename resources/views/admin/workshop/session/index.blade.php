@@ -66,9 +66,13 @@
                 </fieldset>
 
                 <div class="btn-wrap">
-                    <a href="javascript:;" data-type='date' data-tab=ALL class="tab-btn btn btn-type1 color-type{{ (request()->date_tab ?? 'ALL') == 'ALL' ? '24':'23' }}">ALL</a>
+							<a href="javascript:;" data-type='date' data-tab=ALL class="tab-btn btn btn-type1 color-type{{ (request()->date_tab ?? 'ALL') == 'ALL' ? '24':'23' }}">ALL</a>
                     @foreach($workshop->date as $key => $val)
-                        <a href="javascript:;" data-type='date' data-tab={{ $key }} class="tab-btn btn btn-type1 color-type{{ (request()->date_tab ?? 'ALL') == (string)$key ? '24':'23' }}">{{ $val }}</a>
+						@if($val == 'P')
+							 <a href="javascript:;" data-type='date' data-tab={{ $key }} class="tab-btn btn btn-type1 color-type{{ (request()->date_tab ?? 'ALL') == (string)$key ? '24':'23' }}">Poster</a>
+						@else	
+							 <a href="javascript:;" data-type='date' data-tab={{ $key }} class="tab-btn btn btn-type1 color-type{{ (request()->date_tab ?? 'ALL') == (string)$key ? '24':'23' }}">{{ $val }}</a>
+						@endif	
                     @endforeach
                 </div>
 
@@ -99,10 +103,10 @@
                         <col style="width: 5%;">
                         <col style="width: 5%;">
                         <col style="width: 10%;">
-{{--                        <col style="width: 10%;">--}}
-                        <col style="width: 8%;">
+{{--                    <col style="width: 10%;">--}}
+                        <col>
 
-                        <col style="width: 8%;">
+                        <col style="width: 15%;">
                         <col style="width: 8%;">
                         <col style="width: 8%;">
                     </colgroup>
@@ -112,7 +116,7 @@
                         <th scope="col">No</th>
                         <th scope="col">세션번호</th>
                         <th scope="col">행사일</th>
-{{--                        <th scope="col">ROOM</th>--}}
+{{--                    <th scope="col">ROOM</th>--}}
                         <th scope="col">세션명</th>
 
                         <th scope="col">좌장</th>
@@ -131,7 +135,7 @@
                             <?/* 241119
                             <td>{{ $workshop->room[$row->room] ?? '' }}</td>
                             */?>
-                            <td>{{ $row->title ?? '' }}</td>
+                            <td class="text-left">{{ $row->title ?? '' }}</td>
                             <td>{{ $row->chair ?? '' }}</td>
 
                             <td>

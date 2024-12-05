@@ -1,6 +1,7 @@
 @extends('layouts.web-layout')
 
 @section('addStyle')
+
 @endsection
 
 @section('contents')

@@ -34,11 +34,11 @@ class MypageServices extends AppServices
 
     public function listService(Request $request)
     {
-        $query = Sac::where(['sac_info.del'=>'N','sac_info.user_sid'=>thisPK(),'educations.del' => 'N'])
+        $query = Sac::where(['sac_info.user_sid'=>thisPK(),'educations.del' => 'N'])
             ->join('educations', 'educations.sid', '=', 'sac_info.esid') // 'education' 테이블 조인
             ->select('sac_info.*', 'educations.sid as education_sid') // List other columns as needed
+            ->withTrashed() // soft delete를 무시하고 조회!!!
             ->orderByDesc('sac_info.sid');
-//            ->toSql();
 
         $list = $query->paginate(10);
         $this->data['list'] = setListSeq($list);

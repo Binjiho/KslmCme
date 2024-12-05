@@ -194,6 +194,12 @@ class Board extends Model
         return $this->hasOne(BoardPopup::class, 'b_sid');
     }
 
+
+    public function reply()
+    {
+        return $this->hasOne(BoardComment::class, 'b_sid');
+    }
+
     public function downloadUrl($field) // 게시판 첨부 파일 다운로드
     {
         return route('download', [

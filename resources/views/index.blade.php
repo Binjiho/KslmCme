@@ -124,19 +124,19 @@
                             공지사항이 없습니다.
                         @endforelse
                     </div>
-                    <span class="btn-view">자세히 보기 →</span>
+                    <span class="btn-view"><a href="{{ route('board.view', ['code' => 'notice', 'sid' => $notice->sid]) }}" class="notice-tit ellipsis">자세히 보기 →</a></span>
 
                 </div>
             </div>
         </div>
         <div class="main-conbox">
             <div class="main-tit-wrap">
-                <h3 class="main-tit">온라인 강의 <a href="#n" class="btn btn-more"><span class="hide">더보기</span></a></h3>
+                <h3 class="main-tit">온라인 강의 <a href="{{ route('education') }}" class="btn btn-more"><span class="hide">더보기</span></a></h3>
             </div>
             <div class="edu-board-list js-board-rolling cf">
                 @foreach($education_list as $val)
                 <div class="edu-board-con">
-                    <a href="#n">
+                    <a href="{{ route('education.detail',['esid'=>$val->sid]) }}">
                         <span class="cate">{{ $educationConfig['category'][$val->category] ?? '' }}</span>
                         <strong class="tit ellipsis2">{{ $val->title ?? '' }}</strong>
                         <p class="date">
@@ -166,30 +166,63 @@
 @endsection
 
 @section('addScript')
-    @foreach($boardPopupList as $row/* 게시판 팝업 */)
-        {{ $row->subject }}
-        @include('common.popup.template' . $row->popups->popup_skin, ['board' => $row, 'popup' => $row->popups])
-    @endforeach
-
+{{--    @foreach($boardPopupList as $row/* 게시판 팝업 */)--}}
+{{--        {{ $row->subject }}--}}
+{{--        @include('common.popup.template' . $row->popups->popup_skin, ['board' => $row, 'popup' => $row->popups])--}}
+{{--    @endforeach--}}
     <script>
-        function setCookie24(name, value, expiredays) {
-            var todayDate = new Date();
+        //!==팝업===========================================
+        @foreach($boardPopupList as $row/* 게시판 팝업 */)
+            var popName = 'popup_{{ $row->sid }}';
+            if(isEmpty(getCookie(popName))) {
+                {{--callNoneSpinnerAjax('{{ route('main.data') }}', popupList[key]);--}}
+                let popupHeight = {{ $row->height ?? 500 }};
+                let popupWidth = {{ $row->width ?? 600 }};
+                let popupY = {{ $row->position_x ?? 0 }};
+                let popupX = {{ $row->position_y ?? 0 }};
 
-            todayDate.setDate(todayDate.getDate() + expiredays);
+                window.open( "{!! route('main_popup',['bsid'=>$row->sid, 'popup_skin'=>$row->popups->popup_skin ?? 0]) !!}", popName, 'status=no, height=' + popupHeight + ', width=' + popupWidth + ', left=' + popupX + ', top=' + popupY);
+            }
+        @endforeach
+        //!==팝업===========================================
 
-            document.cookie = name + "=" + escape(value) + "; path=/; expires=" + todayDate.toGMTString() + ";";
+        function getCookie(name)
+        {
+            var nameOfCookie = name + "=";
+            var x = 0;
+            while ( x <= document.cookie.length )
+            {
+                var y = (x+nameOfCookie.length);
+                if ( document.cookie.substring( x, y ) == nameOfCookie ) {
+                    if ( (endOfCookie=document.cookie.indexOf( ";", y )) == -1 )
+                        endOfCookie = document.cookie.length;
+                    return unescape( document.cookie.substring( y, endOfCookie ) );
+                }
+                x = document.cookie.indexOf( " ", x ) + 1;
+                if ( x == 0 )
+                    break;
+            }
+            return "";
         }
 
-        $(document).on('click', '.popup_close_btn', function () {
-            $(this).closest('.win-popup-wrap').remove();
-        });
+        // function setCookie24(name, value, expiredays) {
+        //     var todayDate = new Date();
+        //
+        //     todayDate.setDate(todayDate.getDate() + expiredays);
+        //
+        //     document.cookie = name + "=" + escape(value) + "; path=/; expires=" + todayDate.toGMTString() + ";";
+        // }
 
-        $(document).on('click', '.btn-pop-today-close', function () {
-            const layer = $(this).closest('.win-popup-wrap');
-
-            setCookie24(layer.attr('id'), 'done', 1);
-
-            layer.remove();
-        });
+        // $(document).on('click', '.popup_close_btn', function () {
+        //     $(this).closest('.win-popup-wrap').remove();
+        // });
+        //
+        // $(document).on('click', '.btn-pop-today-close', function () {
+        //     const layer = $(this).closest('.win-popup-wrap');
+        //
+        //     setCookie24(layer.attr('id'), 'done', 1);
+        //
+        //     layer.remove();
+        // });
     </script>
 @endsection

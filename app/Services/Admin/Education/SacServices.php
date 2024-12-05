@@ -52,8 +52,9 @@ class SacServices extends AppServices
     public function deletedService(Request $request)
     {
         $query = Sac::orderBy('sid','desc');
-        $query->where(['del'=>'N','esid'=>$request->esid])->whereNotNull('del_request');
-        $query->whereNotNull('del_request_at');
+        $query->where(['esid'=>$request->esid]);
+        $query->whereNotNull('deleted_at');
+        $query->withTrashed();
 
         if ($request->del_request) {
             $query->where('del_request', 'like', "%{$request->del_request}%");
@@ -306,11 +307,12 @@ class SacServices extends AppServices
         $this->transaction();
 
         try {
-            $sac = Sac::findOrFail($request->sid);
+            $sac = Sac::withTrashed()->where(['sid'=>$request->sid])->first(); //findOrFail 은 deleted_at is null이 붙음
 
             $sac->del_request = null;
             $sac->del_request_at = null;
             $sac->del = 'N';
+            $sac->deleted_at = null;
 
             $sac->update();
 

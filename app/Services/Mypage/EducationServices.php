@@ -303,8 +303,10 @@ class EducationServices extends AppServices
                 $myLecView->setByData($request);
                 $myLecView->save();
             }else{
-                $myLecView->setByData($request);
-                $myLecView->update();
+                if($myLecView->complete_status != 'Y'){
+                    $myLecView->setByData($request);
+                    $myLecView->update();
+                }
             }
 
             $sac_info = Sac::findOrFail($request->ssid);
@@ -332,21 +334,16 @@ class EducationServices extends AppServices
             $myLecView = LectureView::where(['user_sid'=>thisPK(), 'ssid'=>$request->ssid, 'lsid'=>$request->lsid])->first();
 
             // 해당 강의 데이터만
-            if(empty($myLecView)){
-                $myLecView = (new LectureView());
+            if(!empty($myLecView)){
                 $request->merge([ 'user_sid' => thisPk() ]);
                 $request->merge([ 'pdf_percent' => 100 ]);
                 $request->merge([ 'complete_status' => 'Y' ]);
                 $myLecView->setByData($request);
-                $myLecView->save();
-
-                Log::channel('playLog')->error("================================== PLAY VIDEO ===================================");
-                Log::channel('playLog')->error("수강완료 type pdf user_sid : ".thisPk()." LectureView_SID : {$myLecView->sid} Sac_SID :{$request->ssid} Lecture_SID :{$request->lsid} Education_SID :{$request->esid} 시간 : ".date('Y-m-d H:i:s'));
-                Log::channel('playLog')->error("===============================================================================");
-
-            }else{
-                $myLecView->setByData($request);
                 $myLecView->update();
+
+                Log::channel('playLog')->error("================================== PLAY PDF ===================================");
+                Log::channel('playLog')->error("수강완료 FINISH type:pdf user_sid : ".thisPk()." LectureView_SID : {$myLecView->sid} Sac_SID :{$request->ssid} Lecture_SID :{$request->lsid} Education_SID :{$request->esid} 시간 : ".date('Y-m-d H:i:s'));
+                Log::channel('playLog')->error("===============================================================================");
             }
 
             // 모든 강의 데이터가 100% 완료인 경우
@@ -368,10 +365,6 @@ class EducationServices extends AppServices
                 $sac_info->edu_status = 'I';
                 $sac_info->update();
             }
-
-            Log::channel('playLog')->error("================================== PLAY VIDEO ===================================");
-            Log::channel('playLog')->error("수강완료 FINISH type:pdf user_sid : ".thisPk()." LectureView_SID : {$myLecView->sid} Sac_SID :{$request->ssid} Lecture_SID :{$request->lsid} Education_SID :{$request->esid} 시간 : ".date('Y-m-d H:i:s'));
-            Log::channel('playLog')->error("===============================================================================");
 
             return $this->returnJsonData('result', [
                 'res' => 'complete',

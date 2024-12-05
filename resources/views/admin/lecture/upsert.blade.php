@@ -5,8 +5,9 @@
 @endsection
 
 @section('contents')
+<div style="padding:25px;">
     <div class="sub-tit-wrap">
-        <h3 class="sub-tit">교육 {{ empty($lecture->sid) ? '등록' : '수정' }}</h3>
+        <h3 class="sub-tit">강의 {{ empty($lecture->sid) ? '등록' : '수정' }}</h3>
     </div>
 
     <form id="mail-frm" method="post" action="{{ route('lecture.data') }}" data-sid="{{ $lecture->sid ?? 0 }}" data-case="lecture-{{ empty($lecture->sid) ? 'create' : 'update' }}" data-send="N">
@@ -60,30 +61,39 @@
             <div class="vod_div" style="{{ ($lecture->type ?? '') == 'V' ? '':'display:none;' }}">
                 <dl>
                     <dt style="text-align: center;"> 강의영상 주소</dt>
-                    <dd>
+                    <dd style="display: inline-flex">
                         <input type="text" name="link_url" id="link_url" value="{{ $lecture->link_url ?? '' }}" class="form-item">
+                        <span class="btn-wrap" style="margin-top: 0px; !important;">
+                            <a href="#" class="btn btn-small color-type4" id="btn_setting" style="margin-top:2px">Time Setting</a>
+                        </span>
                     </dd>
                 </dl>
                 <dl>
                     <dt style="text-align: center;"> 강의시간</dt>
-                    <dd>
+                    <dd >
                         <div id="video_container" class="bm10" style="display: none;">
                             <video poster="http://media.w3.org/2010/05/sintel/poster.png" preload="none" controls="true" autoplay="true" id="video" tabindex="0" width=235 style="border-top:1px solid#dddddd;border-right:1px solid#dddddd;border-left:1px solid#dddddd">
                                 <source type="video/mp4" src="{{ $lecture->link_url ?? '' }}" id="mp4">
                             </video>
                         </div>
 
-                        <span class="text-red" id="runningTimeHtml">{{ $lecture->lecture_time ?? '강의시간이 표기될 때 까지 기다려주세요.' }}</span>
-
+                        <input type="text" id="runningTimeHtml" class="form-item" style="width: 50%;" value="{{ $lecture->lecture_time ?? '' }}">
+{{--                        <span class="text-red" id="runningTimeHtml">{{ $lecture->lecture_time ?? '강의시간이 표기될 때 까지 기다려주세요.' }}</span>--}}
+						<p class="help-text text-red">※ 강의시간이 표기될 때 까지 기다려주세요.</p>
+						<p class="help-text text-red">※ 강의 시간 표기 후 등록해야 강의가 정상 이수 됩니다.</p>
                         <input type="hidden" name="lecture_time" id="lecture_time" value="{{ $lecture->lecture_time ?? '' }}" class="form-item" readonly>
                     </dd>
                 </dl>
                 <dl>
                     <dt style="text-align: center;"> 플레이 확인창 시간</dt>
                     <dd style="display: flex;">
-                        <input type="checkbox" name="play_yn" id="play_yn" value="N" {{ ( $lecture->play_yn ?? '') == 'N' ? 'checked':'' }} >
-                        <label for="play_yn">미사용</label>
-                        <input type="text" name="play_time" id="play_time" value="{{ $lecture->play_time ?? '' }}" class="form-item" >
+						 <div class="checkbox-wrap">
+							 <div class="checkbox-group">
+								<input type="checkbox" name="play_yn" id="play_yn" value="N" {{ ( $lecture->play_yn ?? '') == 'N' ? 'checked':'' }} >
+								<label for="play_yn">미사용</label>
+							 </div>
+								<input type="text" name="play_time" id="play_time" value="{{ $lecture->play_time ?? '' }}" class="form-item" >
+						</div>
                     </dd>
                 </dl>
             </div>
@@ -103,7 +113,7 @@
                                 <a href="#n" class="btn-file-delete text-red file_del" data-type="pdf_file" data-path="{{ $lecture->realfile1 }}">X</a>
 
                             @endif
-                            <b style="color: #e95d5d;">* PDF 파일만 업로드가능합니다.</b>
+                           <p class="help-text text-red">* PDF 파일만 업로드가능합니다.</p>
                         </div>
                     </dd>
                 </dl>
@@ -128,13 +138,14 @@
             </dl>
         </div>
 
-        <b style="color: #e95d5d; font-size:20px;">※ 강의 시간 표기 후 등록해야 강의가 정상 이수 됩니다.</b>
+       
 
         <div class="btn-wrap text-center">
             <button type="submit" class="btn btn-type1 color-type20" id="submit">{{ empty($lecture->sid) ? '등록' : '수정' }}</button>
             <a href="javascript:window.close();" class="btn btn-type1 color-type3">취소</a>
         </div>
     </form>
+</div>
 @endsection
 
 @section('addScript')
@@ -149,12 +160,38 @@
         /**
          * 영상 시간 불러오기
          */
-        $(document).on('keyup', '#link_url', function() {
-            geturls = $(this).val();
+        // $(document).on('keyup', '#link_url', function() {
+        //     geturls = $(this).val();
+        //
+        //     if( geturls == "" ){ alert("등록된 동영상이 없습니다."); return false; }
+        //
+        //     $("#mp4").attr("src",geturls);
+        //     $("#video_container").find("video").load();
+        //
+        //     // $("#running_box").show();
+        //
+        //     // 재생후 러닝타임을 가져올수있기때문에 1초간격으로 값을 체크하고 실행종료
+        //     var make_lunningTime = setInterval(function(){
+        //         if( isNaN($("#video_container").find("video").get(0).duration) == false ){
+        //
+        //             $("#runningTimeHtml").html($("#video_container").find("video").get(0).duration);
+        //
+        //             $("input[name='lecture_time']").val($("#video_container").find("video").get(0).duration);
+        //             $("input[name='play_time']").val( $("#video_container").find("video").get(0).duration/2 );
+        //
+        //
+        //             clearInterval(make_lunningTime);
+        //         }
+        //     },1500)
+        // });
+
+        $(document).on('click','#btn_setting', function() {
+            geturls = $("#link_url").val();
 
             if( geturls == "" ){ alert("등록된 동영상이 없습니다."); return false; }
 
             $("#mp4").attr("src",geturls);
+            $("#video_container").show();
             $("#video_container").find("video").load();
 
             // $("#running_box").show();
@@ -163,7 +200,7 @@
             var make_lunningTime = setInterval(function(){
                 if( isNaN($("#video_container").find("video").get(0).duration) == false ){
 
-                    $("#runningTimeHtml").html($("#video_container").find("video").get(0).duration);
+                    $("#runningTimeHtml").val($("#video_container").find("video").get(0).duration);
 
                     $("input[name='lecture_time']").val($("#video_container").find("video").get(0).duration);
                     $("input[name='play_time']").val( $("#video_container").find("video").get(0).duration/2 );

@@ -168,7 +168,7 @@ class EducationServices extends AppServices
             return $this->returnJsonData('alert', [
                 'case' => true,
                 'msg' => '교육정보가 삭제 되었습니다.',
-                'winClose' => $this->ajaxActionWinClose(true),
+                'location' => $this->ajaxActionLocation('reload'),
             ]);
         } catch (\Exception $e) {
             return $this->dbRollback($e);

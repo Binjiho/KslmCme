@@ -24,6 +24,11 @@ class MainController extends Controller
         return view('index', $this->mainServices->indexService($request));
     }
 
+    public function main_popup(Request $request)
+    {
+        return view("common.popup.template".$request->popup_skin ?? 0, $this->mainServices->popService($request));
+    }
+
     public function data(Request $request)
     {
         return $this->mainServices->dataAction($request);

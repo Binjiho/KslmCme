@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Board;
 use App\Models\BoardFile;
+use App\Models\BoardCommentFile;
 use App\Models\MailFile;
 use App\Models\Education;
 use App\Models\Lecture;
@@ -62,6 +63,13 @@ class CommonServices extends AppServices
 
             case 'boardFile':
                 $boardFile = BoardFile::findOrFail($sid);
+                $boardFile->increment('download');
+
+                $this->data = ['realfile' => $boardFile->realfile, 'filename' => $boardFile->filename];
+                break;
+
+            case 'boardCommentFile':
+                $boardFile = BoardCommentFile::findOrFail($sid);
                 $boardFile->increment('download');
 
                 $this->data = ['realfile' => $boardFile->realfile, 'filename' => $boardFile->filename];

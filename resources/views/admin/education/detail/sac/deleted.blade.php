@@ -144,7 +144,7 @@
                                 </select>
                             </td>
                             <td>
-                                <a href="javascript:void(0);" class="btn-admin restore">
+                                <a href="javascript:void(0);" class="btn-admin btn-restore">
                                     <img src="/assets/image/admin/restore.png" alt="복원" style="width: 27px; height: 27px;">
                                 </a>
                             </td>
@@ -171,7 +171,7 @@
             return $(_this).closest('tr').data('sid');
         }
 
-        $(document).on('click', '.btn-del', function() {
+        $(document).on('click', '.btn-restore', function() {
             const ajaxData = {
                 'sid': getPK(this),
                 'case': 'change-restore',

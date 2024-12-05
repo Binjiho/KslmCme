@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 // main
 Route::controller(\App\Http\Controllers\Main\MainController::class)->group(function () {
     Route::get('/', 'main')->name('main');
+    Route::get('/main_popup', 'main_popup')->name('main_popup');
     Route::post('data', 'data')->name('main.data');
 });
 

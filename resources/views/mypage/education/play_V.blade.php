@@ -42,7 +42,7 @@
                         <input type="hidden" name="complete_status" id="complete_status" value="{{ $lecture_view->complete_status ?? 'N' }}" readonly>
                         <input type="hidden" name="ing_time" id="ing_time" value="{{ $lecture_view->ing_time ?? 0 }}" readonly>
                         <input type="hidden" name="play_time" id="play_time" value="{{ $lecture->play_time ?? 0 }}" readonly>
-                        <input type="hidden" name="play_yn" id="play_yn" value="{{ $lecture->play_yn ?? 'Y' }}" readonly>
+                        <input type="hidden" name="play_yn" id="play_yn" value="{{ empty($lecture_view->sid) ? 'Y':'N' }}" readonly>
                         <input type="hidden" name="play_click" id="play_click" value="N" readonly>
                         <input type="hidden" name="ssid" id="ssid" value="{{ $sac_info->sid ?? '' }}" readonly>
                         <input type="hidden" name="lsid" id="lsid" value="{{ $lecture->sid ?? '' }}" readonly>
@@ -217,32 +217,37 @@
                         }
                     }
 
-                    if( now_time != Math.round(ing_time * 10) / 10 ){
+                    const _complete_status = $("input[name='complete_status']").val();
+                    if(_complete_status != 'Y'){
+                        if( now_time != Math.round(ing_time * 10) / 10 ){
 
-                        let ajaxData = {
-                            'case': 'vod-play',
-                            'ing_time': now_time,
-                            'ssid': $("input[name='ssid']").val(),
-                            'lsid': $("input[name='lsid']").val(),
-                            'esid': $("input[name='esid']").val(),
-                        };
+                            let ajaxData = {
+                                'case': 'vod-play',
+                                'ing_time': now_time,
+                                'ssid': $("input[name='ssid']").val(),
+                                'lsid': $("input[name='lsid']").val(),
+                                'esid': $("input[name='esid']").val(),
+                            };
 
-                        callbackAjax(dataUrl, ajaxData, function(data, error) {
-                            if (data) {
-                                if (data.result['res'] == "complete") {
-                                    location.reload();
-                                }else if(data.result['res'] == "error"){
-                                    alert(data.result['msg']);
-                                    // clearInterval(intervalId);
-                                    stopInterval();
-                                    location.reload();
-                                }else{
-                                    var percent = parseInt(data.result['percent']);
-                                    $(".percent").css("width",percent+"%");
-                                    $(".percent").html(percent+"%");
+                            callbackAjax(dataUrl, ajaxData, function(data, error) {
+                                if (data) {
+                                    if (data.result['res'] == "complete") {
+                                        location.reload();
+                                    }else if(data.result['res'] == "error"){
+                                        alert(data.result['msg']);
+                                        // clearInterval(intervalId);
+                                        stopInterval();
+                                        location.reload();
+                                    }else{
+                                        var percent = parseInt(data.result['percent']);
+                                        $(".percent").css("width",percent+"%");
+                                        // $(".percent").html(percent+"%");
+                                        $(".percent_txt").html(percent+"%");
+
+                                    }
                                 }
-                            }
-                        }, true);
+                            }, true);
+                        }
                     }
                 },5000);
             }

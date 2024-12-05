@@ -71,6 +71,8 @@
 
         const url = '{{ $lecture->realfile1 ?? '' }}';  // PDF 파일 경로 지정
 
+        const _complete_status = $("input[name='complete_status']").val();
+
         let pdfDoc = null;
         let currentPage = 1;
         let totalPages = 0;
@@ -98,37 +100,50 @@
             // 현재 페이지 번호 업데이트
             document.getElementById('page-num').textContent = pageNum;
 
-            if( $("input[name='complete_status']").val() == 'N'){
-                //퍼센트 계산
-                const percent = Math.round((pageNum / totalPages) * 100);
+            //퍼센트 계산
+            let percent = Math.round((pageNum / totalPages) * 100);
+            if(_complete_status=='Y'){
+                percent = 100;
+            }
                 $(".percent").css("width",percent+"%");
                 $(".percent_text").html(percent+"%");
 
-                // 마지막 페이지 확인 함수
-                const isLastPage = () => {
-                    return currentPage === totalPages;
+            // 마지막 페이지 확인 함수
+            const isLastPage = () => {
+                return currentPage === totalPages;
+            };
+
+            //수강완료 함수
+            if (isLastPage()) {
+                let ajaxData = {
+                    'case': 'pdf-finish',
+                    'ssid': $("input[name='ssid']").val(),
+                    'lsid': $("input[name='lsid']").val(),
+                    'esid': $("input[name='esid']").val(),
                 };
 
-                //수강완료 함수
-                if (isLastPage()) {
-                    let ajaxData = {
-                        'case': 'pdf-finish',
-                        'ssid': $("input[name='ssid']").val(),
-                        'lsid': $("input[name='lsid']").val(),
-                        'esid': $("input[name='esid']").val(),
-                    };
-
-                    callbackAjax(dataUrl, ajaxData, function (data, error) {
-                        if (data) {
-                            if (data.result['res'] == "complete") {
-                                location.reload();
-                            } else if (data.result['res'] == "error") {
-                                alert(data.result['msg']);
-                                location.reload();
+                callbackAjax(dataUrl, ajaxData, function (data, error) {
+                    if (data) {
+                        console.log(data);
+                        if (data.result['res'] == "complete") {
+                            if(_complete_status=='N'){
+                                if(confirm("수강이 완료되었습니다. 다시 처음부터 보시겠습니까?")){
+                                    location.reload();
+                                }
+                            }else{
+                                if(confirm("다시 처음부터 보시겠습니까?")){
+                                    location.reload();
+                                }
                             }
+
+                        } else if (data.result['res'] == "error") {
+                            alert(data.result['msg']);
+                            location.reload();
                         }
-                    }, true);
-                }else{ // 페이지 넘길때마다
+                    }
+                }, true);
+            }else{ // 페이지 넘길때마다
+                if( _complete_status == 'N'){
                     let ajaxData = {
                         'case': 'pdf-play',
                         'pdf_percent': percent,
@@ -148,6 +163,7 @@
                         }
                     }, true);
                 }
+
             }
         };
 
@@ -155,7 +171,7 @@
         const loadPDF = async () => {
             pdfDoc = await pdfjsLib.getDocument(url).promise;
             totalPages = pdfDoc.numPages;
-            if(pdf_percent > 0){
+            if(pdf_percent > 0 && _complete_status=='N' ){
                 currentPage = Math.ceil((totalPages * pdf_percent) / 100); //pdf_percent로 현재 페이지 계산
             }
             document.getElementById('page-count').textContent = totalPages;

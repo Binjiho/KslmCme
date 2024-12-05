@@ -5,6 +5,7 @@
 @endsection
 
 @section('contents')
+<div style="padding:25px;">
     <div class="popup-tit-wrap">
         <h3 class="popup-tit">퀴즈 {{ empty($quiz->sid) ? '등록' : '수정' }}</h3>
     </div>
@@ -84,6 +85,7 @@
             </form>
         </div>
     </div>
+</div>
 @endsection
 
 @section('addScript')
@@ -128,6 +130,11 @@
 
             if(count < 2){
                 alert("보기는 최소 2개 이상 입력해주세요.");
+                return false;
+            }
+
+            if($("input[name='answer']").is(":checked") === false){
+                alert("정답을 체크해주세요.");
                 return false;
             }
 

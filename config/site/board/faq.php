@@ -42,7 +42,7 @@ return [
         'notice' => false, // 공지
         'secret' => false, // 비밀글
         'subject' => true, // 제목
-        'contents' => false, // 내용
+        'contents' => true, // 내용
         'gubun' => false, // 구분
         'category' => false, // 카테고리
         'file' => false, // 파일업로드 (단일파일)

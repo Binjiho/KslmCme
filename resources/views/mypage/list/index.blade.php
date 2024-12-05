@@ -64,7 +64,7 @@
                                     <a href="{{ route('mypage.receipt',['ssid'=>$row->sid]) }}" class="btn btn-small btn-receipt call-popup" data-popup_name="receipt-pop" data-width="850" data-height="800">영수증</a>
                                 @endif
                                 {{-- WARN : 수강 기간이 시작되기 전에는 취소 가능 --}}
-                                @if( (date('Y-m-d') < $row->edu->edu_sdate->format('Y-m-d')) && $row->del_request != 'I')
+                                @if( /*(date('Y-m-d') < $row->edu->edu_sdate->format('Y-m-d'))*/ ( ($row->edu_status ?? '') == 'N') && ($row->del_request != 'I' && $row->del_request != 'C'))
                                     <a href="javascript:;" class="btn btn-small btn-cancel" data-sid="{{ $row->sid ?? 0 }}" data-method="{{ $row->pay_method ?? 'F' }}">취소</a>
                                 @endif
                             </div>
