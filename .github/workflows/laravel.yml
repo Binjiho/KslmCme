@@ -17,7 +17,7 @@ jobs:
         run: |
           mkdir -p ~/.ssh  # ~/.ssh 디렉토리 생성
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa  # SSH 비공개 키 파일 저장
-          chmod 600 ~/.ssh/id_rsa  # SSH 키 파일 권한 설정
+          chmod 700 ~/.ssh/id_rsa  # SSH 키 파일 권한 설정
 
 #      - name: Set up SSH key
 #        uses: webfactory/ssh-agent@v0.5.3
@@ -26,4 +26,4 @@ jobs:
 
       - name: Deploy to server
         run: |
-          ssh -v -i ~/.ssh/id_rsa -p 22006 kslm@117.52.153.219 "cd home/virtual/kslm/htdocs/kslm && git pull origin master && ./deploy.sh"
+          ssh -v -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -p 22006 kslm@117.52.153.219 "cd home/virtual/kslm/htdocs/kslm && git pull origin master && ./deploy.sh"
