@@ -21,14 +21,16 @@ jobs:
           chmod 700 ~/.ssh  # ~/.ssh 디렉토리 권한 설정
           echo "Setting up SSH key..."
 
-#          # Known hosts 추가 (보안상 서버의 호스트 키를 자동으로 추가)
-#          touch ~/.ssh/known_hosts
-#          chmod 644 ~/.ssh/known_hosts  # known_hosts 권한 설정
-#          echo "Chmod..."
-#
-#          ssh-keyscan github.com >> ~/.ssh/known_hosts
-#          ssh-keyscan 117.52.153.219 >> ~/.ssh/known_hosts
-#          echo "SSH key setup completed"
+          echo "Host 117.52.153.219" >> ~/.ssh/config
+          echo "  Port 22006" >> ~/.ssh/config
+          echo "  User kslm" >> ~/.ssh/config
+          echo "  IdentityFile ~/.ssh/id_rsa" >> ~/.ssh/config
+          echo "  StrictHostKeyChecking no" >> ~/.ssh/config
+          echo "  LogLevel DEBUG3" >> ~/.ssh/config
+          echo "Setting up SSH key..."
+
+#          # Known hosts 추가
+#          ssh-keyscan -H 117.52.153.219 >> ~/.ssh/known_hosts
 
 
       - name: Debug SSH connection
