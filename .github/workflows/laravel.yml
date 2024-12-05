@@ -19,6 +19,10 @@ jobs:
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa  # SSH 비공개 키 파일 저장
           chmod 755 ~/.ssh/id_rsa  # SSH 키 파일 권한 설정
 
+      - name: Add Host Key
+        run: |
+          ssh-keyscan -p 22006 117.52.153.219 >> ~/.ssh/known_hosts
+
 #      - name: Set up SSH key
 #        uses: webfactory/ssh-agent@v0.5.3
 #        with:
@@ -26,4 +30,4 @@ jobs:
 
       - name: Deploy to server
         run: |
-          ssh -v -i ~/.ssh/id_rsa -p 22006 kslm@117.52.153.219 "cd home/virtual/kslm/htdocs/kslm && git pull origin master && ./deploy.sh"
+          ssh -v -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -p 22006 kslm@117.52.153.219 "cd home/virtual/kslm/htdocs/kslm && git pull origin master && ./deploy.sh"
