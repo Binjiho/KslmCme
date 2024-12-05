@@ -21,7 +21,6 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22006
           script: |
-            echo "SSH 연결 성공!"  # SSH 연결 확인
             ssh -v -p 22006 kslm@${{ secrets.HOST }} "echo 'SSH 연결 성공!'"
 
       - name: Executing remote SSH commands using SSH key
