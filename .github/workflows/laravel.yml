@@ -28,9 +28,7 @@ jobs:
           echo "  LogLevel DEBUG3" >> ~/.ssh/config
           echo "Setting up SSH key..."
 
-#          # Known hosts 추가
-          ssh-keyscan -H 117.52.153.219 >> ~/.ssh/known_hosts
-
+          ssh-keyscan -H 117.52.153.219 >> ~/.ssh/known_hosts # Known hosts 추가
 
       - name: Debug SSH connection
         run: |
