@@ -35,7 +35,7 @@ jobs:
 
       - name: Debug SSH connection
         run: |
-          ssh -v -F ~/.ssh/config -i ~/.ssh/id_rsa -p 22006 kslm@$117.52.153.219 "echo 'SSH 연결 성공!'"
+          ssh -v -F ~/.ssh/config -i ~/.ssh/id_rsa -p 22006 kslm@117.52.153.219 "echo 'SSH 연결 성공!'"
 
       - name: Executing remote SSH commands using SSH key
         uses: appleboy/ssh-action@v1.2.0
