@@ -13,17 +13,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2  # 레포지토리 코드를 체크아웃
 
-#      - name: Create SSH directory
-#        run: |
-#          mkdir -p ~/.ssh  # ~/.ssh 디렉토리 생성
-#          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa  # SSH 비공개 키 파일 저장
-#          chmod 755 ~/.ssh/id_rsa  # SSH 키 파일 권한 설정
-
-      - name: Set up SSH key
-        uses: webfactory/ssh-agent@v0.5.3
+      - name: Executing remote SSH commands using SSH key
+        uses: appleboy/ssh-action@master
         with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}  # 비공개 SSH 키 (GitHub Secrets에서 관리)
-
-      - name: Deploy to server
-        run: |
-          ssh -v -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -p 22006 kslm@117.52.153.219 "cd home/virtual/kslm/htdocs/kslm && git pull origin master && ./deploy.sh"
+            host: ${{ secrets.HOST }}
+            username: ${{ secrets.USERNAME }}
+            key: ${{ secrets.SSH_PRIVATE_KEY }}
+            port: 22006  # 원격 서버의 SSH 포트
+            script: |
+              cd /home/virtual/kslm/htdocs/kslm  # 올바른 경로로 수정
+              git pull origin master
+              sh deploy.sh
